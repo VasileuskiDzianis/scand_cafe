@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="cost_calculation.xml" />
+
+	<bean id="goodsDao" class="by.scand.coffeeshop.dao.GoodsDao" />
+
+	<bean id="catalog" class="by.scand.coffeeshop.domain.Catalog">
+		<property name="goodsDao" ref="goodsDao" />
+	</bean>
+
+	<bean id="order" class="by.scand.coffeeshop.domain.Order">
+		<property name="businessRules" ref="businessRules"></property>
+	</bean>
+
+	<bean id="orderItemDao" class="by.scand.coffeeshop.dao.OrderItemDao"></bean>
+
+	<bean id="buyerDao" class="by.scand.coffeeshop.dao.BuyerDao"></bean>
+
+	<bean id="orderDao" class="by.scand.coffeeshop.dao.OrderDao">
+		<property name="orderItemDao" ref="orderItemDao"></property>
+		<property name="buyerDao" ref="buyerDao"></property>
+	</bean>
+
+	<bean id="coffeeShop" class="by.scand.coffeeshop.domain.CoffeeShop">
+		<property name="catalog" ref="catalog" />
+		<property name="order" ref="order" />
+		<property name="orderDao" ref="orderDao" />
+	</bean>
+</beans>

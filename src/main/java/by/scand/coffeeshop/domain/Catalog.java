@@ -10,20 +10,20 @@ import by.scand.coffeeshop.dao.GoodsDao;
 public class Catalog {
 
 	private List<Goods> goods;
-	private Dao<Goods> dao;
+	private GoodsDao goodsDao;
 
 	public Catalog() {
 	}
 
 	public void setGoodsDao(GoodsDao goodsDao) {
-		this.dao = goodsDao;
+		this.goodsDao = goodsDao;
 	}
 
-	public List<Goods> getCatalog() {
+	public List<Goods> getCatalog(String lang) {
 		goods = new ArrayList<Goods>();
 		List<Goods> allGoods = null;
 		try {
-			allGoods = dao.getAll();
+			allGoods = goodsDao.getAll(lang);
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,10 +37,10 @@ public class Catalog {
 		return goods;
 	}
 	
-	public Goods getOneItemOfGoods(int id){
+	public Goods getOneItemOfGoods(int id, String lang){
 		Goods goods = null;
 		try {
-			goods = dao.getOne(id);
+			goods = goodsDao.getOne(id, lang);
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

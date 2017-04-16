@@ -12,20 +12,19 @@ import by.scand.coffeeshop.domain.Buyer;
 import by.scand.coffeeshop.domain.Order;
 import by.scand.coffeeshop.domain.OrderItem;
 
-public class OrderDao extends Dao<Order> {
+public class OrderDao extends Dao {
 
-	private Dao<OrderItem> orderItemDao;
-	private Dao<Buyer> buyerDao;
+	private OrderItemDao orderItemDao;
+	private BuyerDao buyerDao;
 
-	public void setOrderItemDao(Dao<OrderItem> orderItemDao) {
+	public void setOrderItemDao(OrderItemDao orderItemDao) {
 		this.orderItemDao = orderItemDao;
 	}
 
-	public void setBuyerDao(Dao<Buyer> buyerDao) {
+	public void setBuyerDao(BuyerDao buyerDao) {
 		this.buyerDao = buyerDao;
 	}
 
-	@Override
 	public int addOne(Order order) throws DaoException {
 		int buyerId;
 		buyerId = buyerDao.addOne(order.getBuyer());
@@ -83,24 +82,6 @@ public class OrderDao extends Dao<Order> {
 		orderItemDao.addAll(order.getItems());
 
 		return orderId;
-	}
-
-	@Override
-	public void addAll(List<Order> object) throws DaoException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Order getOne(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Order> getAll() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

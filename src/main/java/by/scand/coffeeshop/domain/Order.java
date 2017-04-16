@@ -12,12 +12,10 @@ public class Order {
 	private List<OrderItem> items;
 	private Date date;
 	private Buyer buyer;
-	private BusinessRules discountCalculator;
+	private BusinessRules businessRules;
 	private int discount;
 	private int delivery;
 	private int cost;
-	private Dao<BusinessRules> businessRulesDao;
-	
 
 	public Order() {
 		items = new ArrayList<OrderItem>();
@@ -63,12 +61,8 @@ public class Order {
 		this.discount = discount;
 	}
 
-	public BusinessRules getDiscountCalculator() {
-		return discountCalculator;
-	}
-
-	public void setDiscountCalculator(BusinessRules discountCalculator) {
-		this.discountCalculator = discountCalculator;
+	public void setBusinessRules(BusinessRules businessRules) {
+		this.businessRules = businessRules;
 	}
 
 	public int getDelivery() {
@@ -91,25 +85,14 @@ public class Order {
 		items.add(new OrderItem(goods, amount));
 	}
 
-	public void setBusinessRulesDao(Dao<BusinessRules> businessRulesDao) {
-		this.businessRulesDao = businessRulesDao;
-	}
-
 	public int summ() {
-		try {
-			discountCalculator = businessRulesDao.getOne(0);
-		} catch (DaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		cost = 0;
 		for (OrderItem orderItem : items) {
 			cost += orderItem.getPrice();
 		}
-		discount = discountCalculator.calcDiscount(items);
+		discount = businessRules.calcDiscount(items);
 		cost += discount;
-		delivery = discountCalculator.calcDelivery(items);
+		delivery = businessRules.calcDelivery(items);
 		cost += delivery;
 
 		return cost;

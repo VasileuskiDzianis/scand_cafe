@@ -7,33 +7,14 @@ import java.util.List;
 
 import by.scand.coffeeshop.domain.OrderItem;
 
-public class OrderItemDao extends Dao<OrderItem> {
+public class OrderItemDao extends Dao {
 
-	@Override
-	public OrderItem getOne(int id) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<OrderItem> getAll() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int addOne(OrderItem object) throws DaoException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public void addAll(List<OrderItem> orderItems) throws DaoException {
 		Connection connection;
 		connection = getConnection();
 		PreparedStatement prepStatement = null;
 		String dbAddOrderItem = "INSERT INTO order_item(order_id,goods_id,amount) VALUES(?,?,?);";
-		
+
 		try {
 			prepStatement = connection.prepareStatement(dbAddOrderItem);
 			connection.setAutoCommit(false);
@@ -43,7 +24,7 @@ public class OrderItemDao extends Dao<OrderItem> {
 				prepStatement.setInt(3, orderItem.getAmount());
 				prepStatement.addBatch();
 			}
-			
+
 			prepStatement.executeBatch();
 			connection.commit();
 
@@ -52,7 +33,7 @@ public class OrderItemDao extends Dao<OrderItem> {
 		} finally
 
 		{
-			
+
 			try {
 				if (prepStatement != null)
 					prepStatement.close();
@@ -67,7 +48,7 @@ public class OrderItemDao extends Dao<OrderItem> {
 			}
 
 		}
-		
+
 	}
 
 }

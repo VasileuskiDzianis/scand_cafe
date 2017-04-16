@@ -18,6 +18,12 @@ public class Buyer {
 		this.patronymic = patronymic;
 		this.address = shippingAddress;
 	}
+	public Buyer(String firstName, String lastName, String patronymic, String shippingAddress) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.patronymic = patronymic;
+		this.address = shippingAddress;
+	}
 
 	public int getId() {
 		return id;

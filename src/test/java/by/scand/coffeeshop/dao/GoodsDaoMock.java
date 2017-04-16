@@ -12,9 +12,9 @@ public class GoodsDaoMock extends GoodsDao{
 	private Goods goods3 = new Goods(3, "Coffe sort 3", 100, 'Y');
 	private Goods goods4 = new Goods(4, "Coffe sort 4", 100, 'N');
 	private List<Goods> goods = new ArrayList<Goods>(Arrays.asList(goods1, goods2, goods3, goods4));
-	@Override
 	
-	public Goods getOne(int id) {
+	@Override
+	public Goods getOne(int id, String lang) {
 		Goods oneItem = null;
 		for (Goods product : goods) {
 			if (product.getId() == id){
@@ -26,7 +26,7 @@ public class GoodsDaoMock extends GoodsDao{
 	}
 
 	@Override
-	public List<Goods> getAll() {
+	public List<Goods> getAll(String lang) {
 		
 		
 		return goods;

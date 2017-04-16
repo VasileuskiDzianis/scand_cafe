@@ -12,8 +12,17 @@ public class CoffeeShop {
 	private Catalog catalog;
 	private Order order;
 	private OrderDao orderDao;
+	private String lang;
 
 	public CoffeeShop() {
+	}
+
+	public String getLang() {
+		return lang;
+	}
+
+	public void setLang(String lang) {
+		this.lang = lang;
 	}
 
 	public Catalog getCatalog() {
@@ -46,13 +55,13 @@ public class CoffeeShop {
 																// we get from
 																// UI
 		for (Map.Entry<Integer, Integer> entry : purchases.entrySet()) {
-			order.addItem(catalog.getOneItemOfGoods(entry.getKey()), entry.getValue());
+			order.addItem(catalog.getOneItemOfGoods(entry.getKey(), lang), entry.getValue());
 		}
 		return order;
 	}
 
 	public List<Goods> showCatalog() {
-		return catalog.getCatalog();
+		return catalog.getCatalog(lang);
 	}
 
 	public boolean confirmOrder(Buyer buyer, Order order) {

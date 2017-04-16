@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import by.scand.coffeeshop.dao.BusinessRulesDao;
 import by.scand.coffeeshop.domain.BusinessRules;
 import by.scand.coffeeshop.domain.BusinessRulesImpl;
 import by.scand.coffeeshop.domain.Goods;
@@ -42,6 +43,18 @@ public class BusinessRulesImplTest{
 		items.add(orderItem4);
 		//order sum more then 1000, delivery - free
 		assertEquals(0, discount.calcDelivery(items));
+		
+	}
+	
+	@Test
+	public void setBusinessRulesDaoTest(){
+		BusinessRulesImpl bRules = new BusinessRulesImpl();
+		bRules.setBusinessRulesDao(new BusinessRulesDao());
+		assertEquals(5, bRules.getEachNCupFree());
+		assertEquals(200, bRules.getDeliveryCost());
+		assertEquals(1000, bRules.getFreeDeliveryBorder());
+		
+		
 		
 	}
 	

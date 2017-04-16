@@ -15,7 +15,7 @@ public class CatalogTest{
 	public void testGetCatalog() {
 		catalog = new Catalog();
 		catalog.setGoodsDao(new GoodsDaoMock());
-		List<Goods> goods = catalog.getCatalog();
+		List<Goods> goods = catalog.getCatalog("en");
 		for (Goods product : goods) {
 			assertEquals('N',product.getDisabled());
 		}
@@ -25,7 +25,7 @@ public class CatalogTest{
 		catalog = new Catalog();
 		catalog.setGoodsDao(new GoodsDaoMock());
 		Goods goods;
-		goods = catalog.getOneItemOfGoods(3);
+		goods = catalog.getOneItemOfGoods(3, "en");
 		
 		assertEquals("Coffe sort 3",goods.getName());
 		

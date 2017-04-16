@@ -12,7 +12,7 @@ public class BusinessRulesDaoTest {
 	public void testGetOneInt() throws DaoException {
 		BusinessRulesDao brDao = new BusinessRulesDao();
 		BusinessRulesImpl brImpl;
-		brImpl = (BusinessRulesImpl)brDao.getOne(0);
+		brImpl = (BusinessRulesImpl) brDao.getOne();
 		assertEquals(200, brImpl.getDeliveryCost());
 		
 		assertEquals(5, brImpl.getEachNCupFree());

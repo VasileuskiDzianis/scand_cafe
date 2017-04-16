@@ -9,10 +9,10 @@ import java.util.List;
 
 import by.scand.coffeeshop.domain.Goods;
 
-public class GoodsDao extends Dao<Goods> {
+public class GoodsDao extends Dao{
 
-	@Override
-	public Goods getOne(int id) throws DaoException {
+	
+	public Goods getOne(int id, String lang) throws DaoException {
 		Connection connection;
 
 		connection = getConnection();
@@ -27,7 +27,7 @@ public class GoodsDao extends Dao<Goods> {
 			resultSet = prepStatement.executeQuery();
 			if (resultSet.next()) {
 				goods.setId(resultSet.getInt("id"));
-				goods.setName(resultSet.getString("name"));
+				goods.setName(resultSet.getString("name"+"_"+lang));
 				goods.setPrice(resultSet.getInt("price"));
 				goods.setDisabled(resultSet.getString("disabled").charAt(0));
 			}
@@ -61,8 +61,8 @@ public class GoodsDao extends Dao<Goods> {
 		return goods;
 	}
 
-	@Override
-	public List<Goods> getAll() throws DaoException {
+	
+	public List<Goods> getAll(String lang) throws DaoException {
 		Connection connection;
 
 		connection = getConnection();
@@ -77,7 +77,7 @@ public class GoodsDao extends Dao<Goods> {
 			while (resultSet.next()) {
 				goodsList.add(new Goods(
 						resultSet.getInt("id"), 
-						resultSet.getString("name"), 
+						resultSet.getString("name"+"_"+lang), 
 						resultSet.getInt("price"),
 						resultSet.getString("disabled").charAt(0)));
 			}
@@ -109,18 +109,6 @@ public class GoodsDao extends Dao<Goods> {
 		}
 
 		return goodsList;
-	}
-
-	@Override
-	public int addOne(Goods object) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void addAll(List<Goods> object) throws DaoException {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

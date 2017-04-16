@@ -13,7 +13,7 @@ public class BuyerDaoTest {
 	@Test
 	public void testAddOneBuyer() throws DaoException {
 		Buyer buyer = new Buyer(1,"Тест","Тест","Тест","Тест");
-		Dao<Buyer> dao = new BuyerDao();
+		BuyerDao dao = new BuyerDao();
 		assertNotSame(0, dao.addOne(buyer));
 		
 	}

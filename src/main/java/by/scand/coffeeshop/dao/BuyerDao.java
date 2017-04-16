@@ -5,25 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
-
 import by.scand.coffeeshop.domain.Buyer;
 
-public class BuyerDao extends Dao<Buyer> {
+public class BuyerDao extends Dao {
 
-	@Override
-	public Buyer getOne(int id) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Buyer> getAll() throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int addOne(Buyer buyer) throws DaoException {
 		Connection connection;
 		connection = getConnection();
@@ -70,12 +55,6 @@ public class BuyerDao extends Dao<Buyer> {
 
 		}
 		return id;
-	}
-
-	@Override
-	public void addAll(List<Buyer> object) throws DaoException {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

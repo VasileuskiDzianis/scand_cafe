@@ -25,7 +25,7 @@ public class OrderTest {
 		
 		
 		order = new Order();
-		order.setBusinessRulesDao(brDao);
+		order.setBusinessRules(new BusinessRulesImpl(5,200,1000));
 		order.addItem(goods1, 1);
 		order.addItem(goods2, 1);
 		order.addItem(goods3, 1);
