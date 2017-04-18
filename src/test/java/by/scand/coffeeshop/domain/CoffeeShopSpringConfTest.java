@@ -25,9 +25,6 @@ public class CoffeeShopSpringConfTest {
 		//2*150 + 3*100 + 200 = 800
 		assertEquals(800, order.summ());
 		
-		
-		
-		
 	}
 
 	@Test

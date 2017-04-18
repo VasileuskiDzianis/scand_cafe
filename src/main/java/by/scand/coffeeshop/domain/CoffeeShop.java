@@ -57,6 +57,7 @@ public class CoffeeShop {
 		for (Map.Entry<Integer, Integer> entry : purchases.entrySet()) {
 			order.addItem(catalog.getOneItemOfGoods(entry.getKey(), lang), entry.getValue());
 		}
+		order.summ();
 		return order;
 	}
 

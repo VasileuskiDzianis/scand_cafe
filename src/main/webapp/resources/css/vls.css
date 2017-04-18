@@ -1,0 +1,136 @@
+body {
+	background-color: #90694a;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: small;
+	margin: 10px, 20px, 10px, 20px;
+}
+
+p.order, p.catalog {
+	width: 46%;
+	background-color: #d3b895;
+	font-size: 100%;
+	font-weight: normal;
+	color: #352728;
+	padding-right: 2%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 2%;
+	margin: auto;
+	margin-top: 10px;
+}
+
+p.header {
+	width: 46%;
+	background-color: #d3b895;
+	font-size: 140%;
+	font-weight: bolder;
+	color: #352728;
+	padding-right: 2%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 2%;
+	margin: auto;
+	margin-top: 10px;
+}
+
+p.footer {
+	vertical-align: bottom;
+	width: 46%;
+	background-color: #d3b895;
+	font-size: 140%;
+	font-weight: bolder;
+	color: #352728;
+	padding-right: 2%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 2%;
+	margin: auto;
+	margin-top: 10px;
+}
+
+p.message {
+	width: 46%;
+	background-color: white;
+	font-size: 90%;
+	font-weight: normal;
+	color: black;
+	padding-right: 2%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 2%;
+	margin: auto;
+	margin-top: 10px;
+}
+
+
+h1 {
+	font-size: 120%;
+	text-align: center;
+	color: white;
+	margin: auto;
+	margin-top: 5px;
+}
+
+h2 {
+	font-size: 110%;
+	text-align: center;
+	color: white;
+	margin: auto;
+	margin-top: 5px;
+}
+
+table {
+	width: 50%;
+	border-collapse: collapse;
+	background-color: #d3b895;
+	margin: auto;
+	margin-top: 10px;
+}
+
+th {
+	text-align: right;
+	vertical-align: middle;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 10px;
+}
+
+td {
+	text-align: right;
+	vertical-align: middle;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 10px;
+}
+
+p.menu {
+	text-align: center;
+	width: 46%;
+	font-size: 100%;
+	font-weight: bolder;
+	background-color: #d3b895;
+	padding-right: 2%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 2%;
+	margin: auto;
+	margin-top: 10px;
+}
+
+a:link.menu {
+	color: #352728;
+}
+
+a:visited.menu {
+	color: #352728;
+}
+
+a:hover.menu {
+	color: #90694a;
+}
+
+a:active.menu {
+	color: gray;
+}

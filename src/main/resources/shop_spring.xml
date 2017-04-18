@@ -31,4 +31,11 @@
 		<property name="order" ref="order" />
 		<property name="orderDao" ref="orderDao" />
 	</bean>
+
+	<bean id="localizationDao" class="by.scand.coffeeshop.dao.LocalizationDao" />
+
+	<bean id="localization" class="by.scand.coffeeshop.view.language.Localization">
+		<property name="localizationDao" ref="localizationDao"/>
+	</bean>
+
 </beans>

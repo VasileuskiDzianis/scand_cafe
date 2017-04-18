@@ -5,6 +5,7 @@ public class OrderItem {
 	private Goods goods;
 	private int amount;
 	private int orderId;
+	private int cost;
 
 	public OrderItem() {
 
@@ -22,6 +23,13 @@ public class OrderItem {
 		this.goods = goods;
 		this.amount = amount;
 		this.orderId = orderId;
+	}
+	
+	
+	
+	public int getCost() {
+		cost = getPrice();
+		return cost;
 	}
 
 	public int getOrderId() {
