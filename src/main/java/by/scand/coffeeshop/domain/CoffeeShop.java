@@ -49,7 +49,7 @@ public class CoffeeShop {
 		this.orderDao = orderDao;
 	}
 
-	public Order buyGoods(Map<Integer, Integer> purchases) { // Key - goods Id;
+	public Order buyGoods(Map<Integer, Integer> purchases) throws DomainException { // Key - goods Id;
 																// Value -
 																// amount which
 																// we get from
@@ -61,22 +61,23 @@ public class CoffeeShop {
 		return order;
 	}
 
-	public List<Goods> showCatalog() {
+	public List<Goods> showCatalog() throws DomainException {
 		return catalog.getCatalog(lang);
 	}
 
-	public boolean confirmOrder(Buyer buyer, Order order) {
+	public boolean confirmOrder(Buyer buyer, Order order) throws DomainException {
 		Date date = new Date();
 		order.setBuyer(buyer);
 		order.setDate(date);
+		boolean confirmation = false;
 		try {
 			orderDao.addOne(order);
+			confirmation = true;
 		} catch (DaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DomainException("Order confirmation error");
 		}
 
-		return true;
+		return confirmation;
 	}
 
 }

@@ -29,7 +29,7 @@ public class GoodsDaoTest {
 		List<Goods> goodsList;
 		goodsList = goodsDao.getAll("en");
 		//size of ArrayList should be equal with number of products in table goods
-		assertEquals(4, goodsList.size());
+		assertEquals(8, goodsList.size());
 		//System.out.println(goodsList);
 		
 	}

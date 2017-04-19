@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import by.scand.coffeeshop.domain.BusinessRulesImpl;
 import by.scand.coffeeshop.domain.Buyer;
+import by.scand.coffeeshop.domain.DomainException;
 import by.scand.coffeeshop.domain.Goods;
 import by.scand.coffeeshop.domain.Order;
 
@@ -22,7 +23,7 @@ public class OrderDaoTest {
 	
 	@Ignore
 	@Test
-	public void testAddOneOrder() throws DaoException {
+	public void testAddOneOrder() throws DaoException, DomainException {
 		order = new Order();
 		order.setBusinessRules(new BusinessRulesImpl(5,200,1000));
 		order.addItem(goods1, 5);

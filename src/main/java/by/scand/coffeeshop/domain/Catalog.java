@@ -19,14 +19,13 @@ public class Catalog {
 		this.goodsDao = goodsDao;
 	}
 
-	public List<Goods> getCatalog(String lang) {
+	public List<Goods> getCatalog(String lang) throws DomainException {
 		goods = new ArrayList<Goods>();
 		List<Goods> allGoods = null;
 		try {
 			allGoods = goodsDao.getAll(lang);
 		} catch (DaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DomainException("Getting catalog error");
 		}
 		for (Goods product : allGoods) {
 			if (product.getDisabled() == 'N') { //throw out goods where (disabled != 'N')
@@ -37,13 +36,12 @@ public class Catalog {
 		return goods;
 	}
 	
-	public Goods getOneItemOfGoods(int id, String lang){
+	public Goods getOneItemOfGoods(int id, String lang) throws DomainException{
 		Goods goods = null;
 		try {
 			goods = goodsDao.getOne(id, lang);
 		} catch (DaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DomainException("Getting goods error");
 		}
 		return goods;
 	}

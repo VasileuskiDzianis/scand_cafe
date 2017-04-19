@@ -8,48 +8,48 @@
 	<h1>${localization.attributes.yourOrder}</h1>
 	<table>
 		<tr>
-			<td>${localization.attributes.firstName}</td>
-			<td><input type="text" size="20" name="firstName" /></td>
+			<td class="buyer">${localization.attributes.firstName} <input type="text" size="20" name="firstName" /></td>
 		</tr>
 		<tr>
-			<td>${localization.attributes.lastName}</td>
-			<td><input type="text" size="20" name="lastName" /></td>
+			<td class="buyer">${localization.attributes.lastName} <input type="text" size="20" name="lastName" /></td>
 		</tr>
 		<tr>
-			<td>${localization.attributes.patronymic}</td>
-			<td><input type="text" size="20" name="patronymic" /></td>
+			<td class="buyer">${localization.attributes.patronymic} <input type="text" size="20" name="patronymic" /></td>
 		</tr>
 		<tr>
-			<td>${localization.attributes.address}</td>
-			<td><input type="text" size="20" name="address" /></td>
+			<td class="buyer">${localization.attributes.address} <input type="text" size="20" name="address" /></td>
 		</tr>
 
 
 		<tr>
-			<td></td>
-			<td><input type="submit" value="${localization.attributes.confirm}" /></td>
+			<td class="buyer"><input type="submit" value="${localization.attributes.confirm}" /></td>
 		</tr>
 	</table>
 
 	<table>
 		<tr>
-			<td>${localization.attributes.coffeeSort}</td>
-			<td>${localization.attributes.price}</td>
-			<td>${localization.attributes.amount}</td>
-			<td>${localization.attributes.cost}</td>
+			<th>${localization.attributes.coffeeSort}</th>
+			<th>${localization.attributes.price}</th>
+			<th>${localization.attributes.amount}</th>
+			<th>${localization.attributes.cost}</th>
 		</tr>
-		<c:forEach var="orderItem" items="${order.items}">
+		<c:forEach var="orderItem" items="${order.items}" varStatus="line">
+			<c:if test="${(line.count mod 2) ne 0}">
+			<tr class="dark">
+			</c:if>
+			<c:if test="${(line.count mod 2) eq 0}">
 			<tr>
+			</c:if>
 				<td>${orderItem.goods.name}</td>
 				<td>${orderItem.goods.price/100} byn</td>
 				<td>${orderItem.amount}</td>
 				<td>${orderItem.cost/100} byn</td>
 			</tr>
 		</c:forEach>
-<tr><td colspan="3">${localization.attributes.summ}</td><td>${(order.cost-order.discount-order.delivery)/100} byn</td></tr>
-<tr><td colspan="3">${localization.attributes.delivery}</td><td>${order.delivery/100} byn</td></tr>
-<tr><td colspan="3">${localization.attributes.discount}</td><td>${order.discount/100} byn</td></tr>
-<tr><td colspan="3">${localization.attributes.total}</td><td>${order.cost/100} byn</td></tr>
+<tr><td colspan="3" class="order_details">${localization.attributes.summ}</td><td class="order_details_nums">${(order.cost-order.discount-order.delivery)/100} byn</td></tr>
+<tr><td colspan="3" class="order_details">${localization.attributes.delivery}</td><td class="order_details_nums">${order.delivery/100} byn</td></tr>
+<tr><td colspan="3" class="order_details">${localization.attributes.discount}</td><td class="order_details_nums">${order.discount/100} byn</td></tr>
+<tr><td colspan="3" class="order_details">${localization.attributes.total}</td><td class="order_details_nums">${order.cost/100} byn</td></tr>
 
 	</table>
 

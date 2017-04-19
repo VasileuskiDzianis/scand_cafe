@@ -9,14 +9,20 @@
 	<table>
 		<tr>
 <th></th>
-<th>Sort</th>
-<th>Price</th>
-<th>Amount</th>
+<th>${localization.attributes.coffeeSort}</th>
+<th>${localization.attributes.price}</th>
+<th>${localization.attributes.amount}</th>
 
 		</tr>
-		<c:forEach var="goods" items="${catalog}">
+		<c:forEach var="goods" items="${catalog}" varStatus="line">
+			<c:if test="${(line.count mod 2) ne 0}">
+			<tr class="dark">
+			</c:if>
+			<c:if test="${(line.count mod 2) eq 0}">
 			<tr>
-				<td><input type="checkbox" name="sort" value="${goods.id}"
+			</c:if>
+			
+			   <td><input type="checkbox" name="sort" value="${goods.id}"
 					id="${goods.id}"></td>
 				<td><label for="${goods.id}">${goods.name}</label></td>
 				<td>${goods.price/100} byn</td>

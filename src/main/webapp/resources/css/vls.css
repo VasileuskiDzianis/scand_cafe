@@ -62,7 +62,6 @@ p.message {
 	margin-top: 10px;
 }
 
-
 h1 {
 	font-size: 120%;
 	text-align: center;
@@ -87,8 +86,12 @@ table {
 	margin-top: 10px;
 }
 
+tr.dark {
+	background-color: #c9a97a;
+}
+
 th {
-	text-align: right;
+	text-align: center;
 	vertical-align: middle;
 	padding-right: 10px;
 	padding-top: 3px;
@@ -97,13 +100,19 @@ th {
 }
 
 td {
-	text-align: right;
+	text-align: center;
 	vertical-align: middle;
 	padding-right: 10px;
 	padding-top: 3px;
 	padding-bottom: 3px;
 	padding-left: 10px;
 }
+
+td.buyer {
+	text-align: right;
+	
+}
+
 
 p.menu {
 	text-align: center;
@@ -133,4 +142,12 @@ a:hover.menu {
 
 a:active.menu {
 	color: gray;
+}
+.order_details {
+	text-align: right;
+	font-weight: bolder;
+}
+.order_details_nums {
+	text-align: left;
+	font-weight: bolder;
 }

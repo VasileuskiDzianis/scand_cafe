@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import by.scand.coffeeshop.domain.CoffeeShop;
+import by.scand.coffeeshop.domain.DomainException;
 import by.scand.coffeeshop.view.language.Localization;
 
 @Controller
@@ -50,7 +51,12 @@ public class BuyController {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("shop_spring.xml");
 		CoffeeShop coffeeShop = (CoffeeShop) ctx.getBean("coffeeShop");
 		coffeeShop.setLang(localization.getLanguage());
-		model.addAttribute("order", coffeeShop.buyGoods(items));
+		try {
+			model.addAttribute("order", coffeeShop.buyGoods(items));
+		} catch (DomainException e) {
+			model.addAttribute("message", localization.getAttributes().get("messageOrderProcessingError"));
+			return "message";
+		}
 
 		return "order";
 	}

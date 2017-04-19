@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class CoffeeShopSpringConfTest {
 
 	@Test
-	public void testBuyGoods() {
+	public void testBuyGoods() throws DomainException {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("shop_spring.xml");
 		CoffeeShop coffeeShop = (CoffeeShop)ctx.getBean("coffeeShop");
 		coffeeShop.setLang("ru");
@@ -28,7 +28,7 @@ public class CoffeeShopSpringConfTest {
 	}
 
 	@Test
-	public void testShowCatalog() {
+	public void testShowCatalog() throws DomainException {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("shop_spring.xml");
 		CoffeeShop coffeeShop = (CoffeeShop)ctx.getBean("coffeeShop");
 		coffeeShop.setLang("ru");
@@ -41,7 +41,7 @@ public class CoffeeShopSpringConfTest {
 
 	@Ignore
 	@Test
-	public void testConfirmOrder() {
+	public void testConfirmOrder() throws DomainException {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("shop_spring.xml");
 		CoffeeShop coffeeShop = (CoffeeShop)ctx.getBean("coffeeShop");
 		coffeeShop.setLang("ru");

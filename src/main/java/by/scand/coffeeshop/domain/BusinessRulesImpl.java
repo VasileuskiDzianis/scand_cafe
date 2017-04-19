@@ -26,22 +26,11 @@ public class BusinessRulesImpl implements BusinessRules {
 	@Override
 	public void setBusinessRulesDao(BusinessRulesDao businessRulesDao) {
 		this.businessRulesDao = businessRulesDao;
-		BusinessRulesImpl bRules;
-		try {
-			bRules = (BusinessRulesImpl) businessRulesDao.getOne();
-			this.eachNCupFree = bRules.getEachNCupFree();
-			this.deliveryCost = bRules.getDeliveryCost();
-			this.freeDeliveryCost = bRules.getFreeDeliveryBorder();
-			
-		} catch (DaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		
 	}
 
-	public int getEachNCupFree() {
+	public int getEachNCupFree() throws DomainException {
+	
 		return eachNCupFree;
 	}
 
@@ -49,7 +38,8 @@ public class BusinessRulesImpl implements BusinessRules {
 		this.eachNCupFree = eachNCupFree;
 	}
 
-	public int getDeliveryCost() {
+	public int getDeliveryCost() throws DomainException {
+	
 		return deliveryCost;
 	}
 
@@ -57,7 +47,8 @@ public class BusinessRulesImpl implements BusinessRules {
 		this.deliveryCost = deliveryCost;
 	}
 
-	public int getFreeDeliveryBorder() {
+	public int getFreeDeliveryBorder() throws DomainException {
+	
 		return freeDeliveryCost;
 	}
 
@@ -70,7 +61,8 @@ public class BusinessRulesImpl implements BusinessRules {
 	// sign minus means that we have discount.
 	// sign plus means that we have extra charges (it could be delivery, extra
 	// fast delivery, delivery at the night time etc.
-	public int calcDiscount(List<OrderItem> items) {
+	public int calcDiscount(List<OrderItem> items) throws DomainException {
+		refreshRules();
 		int discount = 0;
 		int cost = 0;
 		for (OrderItem orderItem : items) {
@@ -89,7 +81,8 @@ public class BusinessRulesImpl implements BusinessRules {
 	}
 
 	@Override
-	public int calcDelivery(List<OrderItem> items) {
+	public int calcDelivery(List<OrderItem> items) throws DomainException {
+		refreshRules();
 		int cost = 0;
 		for (OrderItem orderItem : items) {
 			cost += orderItem.getPrice(); // calculate cost of all orderItems
@@ -98,6 +91,17 @@ public class BusinessRulesImpl implements BusinessRules {
 			return deliveryCost;
 		} else
 			return 0;
+	}
+	
+	public void refreshRules() throws DomainException{
+		try {
+			businessRulesDao.refreshRules(this);
+			
+		} catch (DaoException e) {
+			throw new DomainException("Business rules settings error");
+		}
+		
+		
 	}
 
 }

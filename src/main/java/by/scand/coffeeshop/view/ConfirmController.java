@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import by.scand.coffeeshop.domain.Buyer;
 import by.scand.coffeeshop.domain.CoffeeShop;
+import by.scand.coffeeshop.domain.DomainException;
 import by.scand.coffeeshop.domain.Order;
 import by.scand.coffeeshop.view.language.Localization;
 
@@ -44,9 +45,13 @@ public class ConfirmController {
 		
 				
 		
-		if (coffeeShop.confirmOrder(buyer, order)){
-		model.addAttribute("message", localization.getAttributes().get("messageOrderAccepted"));
-		} else model.addAttribute("message", localization.getAttributes().get("messageOrderProcessingError"));
+		try {
+			if (coffeeShop.confirmOrder(buyer, order)){
+			model.addAttribute("message", localization.getAttributes().get("messageOrderAccepted"));
+			} else model.addAttribute("message", localization.getAttributes().get("messageOrderProcessingError"));
+		} catch (DomainException e) {
+			model.addAttribute("message", localization.getAttributes().get("messageOrderProcessingError"));
+		}
 		
 		session.removeAttribute("order");
 		return "message";

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import by.scand.coffeeshop.domain.BusinessRules;
 import by.scand.coffeeshop.domain.BusinessRulesImpl;
 import by.scand.coffeeshop.domain.CoffeeShop;
+import by.scand.coffeeshop.domain.DomainException;
 import by.scand.coffeeshop.view.language.Localization;
 
 @Controller
@@ -25,9 +26,31 @@ public class CatalogController {
 		
 		coffeeShop.setLang(localization.getLanguage());
 		BusinessRulesImpl businessRules = (BusinessRulesImpl)ctx.getBean("businessRules");
+		try {
+			businessRules.refreshRules();
+		} catch (DomainException e1) {
+			model.addAttribute("message", "Fatal error. Try later... Фатальная ошибка. Зайдите позже.");
+			return "message";
+		}
 		
-		model.addAttribute("catalog", coffeeShop.showCatalog() );
-		model.addAttribute("nCupFree", businessRules.getEachNCupFree());
+		try {
+			model.addAttribute("catalog", coffeeShop.showCatalog() );
+		} catch (DomainException e) {
+			if (localization.getAttributes() != null){
+			model.addAttribute("message", localization.getAttributes().get("messageOrderProcessingError"));
+			return "message";
+			} else {
+				model.addAttribute("message", "Fatal error. Try later... Фатальная ошибка. Зайдите позже.");
+				return "message";
+			}
+			
+		}
+		try {
+			model.addAttribute("nCupFree", businessRules.getEachNCupFree());
+		} catch (DomainException e) {
+			model.addAttribute("message", "Fatal error. Try later...Фатальная ошибка. Зайдите позже.");
+			return "message";
+		}
 			
 		return "catalog";
 	}

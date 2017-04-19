@@ -85,7 +85,7 @@ public class Order {
 		items.add(new OrderItem(goods, amount));
 	}
 
-	public int summ() {
+	public int summ() throws DomainException {
 		cost = 0;
 		for (OrderItem orderItem : items) {
 			cost += orderItem.getPrice();

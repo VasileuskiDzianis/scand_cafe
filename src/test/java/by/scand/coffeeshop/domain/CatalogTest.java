@@ -12,7 +12,7 @@ public class CatalogTest{
 	
 	private Catalog catalog;
 	@Test
-	public void testGetCatalog() {
+	public void testGetCatalog() throws DomainException {
 		catalog = new Catalog();
 		catalog.setGoodsDao(new GoodsDaoMock());
 		List<Goods> goods = catalog.getCatalog("en");
@@ -21,7 +21,7 @@ public class CatalogTest{
 		}
 	}
 	@Test
-	public void testGetOneItemOfGoods(){
+	public void testGetOneItemOfGoods() throws DomainException{
 		catalog = new Catalog();
 		catalog.setGoodsDao(new GoodsDaoMock());
 		Goods goods;

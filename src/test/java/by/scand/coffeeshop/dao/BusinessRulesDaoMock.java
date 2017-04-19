@@ -5,10 +5,12 @@ import by.scand.coffeeshop.domain.BusinessRulesImpl;
 
 public class BusinessRulesDaoMock extends BusinessRulesDao {
 	@Override
-	public BusinessRules getOne() throws DaoException {
-		BusinessRulesImpl brImpl = new BusinessRulesImpl(5, 200, 1000);
+	public void refreshRules(BusinessRulesImpl rules) throws DaoException {
+		rules.setDeliveryCost(200);
+		rules.setEachNCupFree(5);
+		rules.setFreeDeliveryBorder(1000);
 		
-		return brImpl;
+				
 		
 	}
 }

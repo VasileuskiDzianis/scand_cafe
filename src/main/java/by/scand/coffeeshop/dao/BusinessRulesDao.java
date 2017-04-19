@@ -9,15 +9,14 @@ import by.scand.coffeeshop.domain.BusinessRulesImpl;
 
 public class BusinessRulesDao extends Dao {
 
-	public BusinessRules getOne() throws DaoException {
+	public void refreshRules(BusinessRulesImpl rules) throws DaoException {
 		Connection connection;
 
 		connection = getConnection();
 		PreparedStatement prepStatement = null;
 		ResultSet resultSet = null;
 		String dbReqGetBusineesRules = "SELECT * FROM business_rules;";
-		BusinessRulesImpl rules = new BusinessRulesImpl();
-
+		
 		try {
 			prepStatement = connection.prepareStatement(dbReqGetBusineesRules);
 			resultSet = prepStatement.executeQuery();
@@ -58,7 +57,7 @@ public class BusinessRulesDao extends Dao {
 			}
 
 		}
-		return rules;
+		
 	}
 
 }

@@ -15,17 +15,19 @@ import by.scand.coffeeshop.dao.DaoException;
 public class OrderTest {
 	private Order order;
 	private BusinessRulesDao brDao = new BusinessRulesDaoMock();
+	
 	private Goods goods1 = new Goods(1, "Coffe sort 1", 150, 'N');
 	private Goods goods2 = new Goods(2, "Coffe sort 2", 200, 'N');
 	private Goods goods3 = new Goods(3, "Coffe sort 3", 100, 'N');
 	private Goods goods4 = new Goods(4, "Coffe sort 4", 100, 'N');
 
 	@Test
-	public void testSumm() throws DaoException {
-		
+	public void testSumm() throws DaoException, DomainException {
+		BusinessRulesImpl bRules = new BusinessRulesImpl(5,200,1000);
+		bRules.setBusinessRulesDao(brDao);
 		
 		order = new Order();
-		order.setBusinessRules(new BusinessRulesImpl(5,200,1000));
+		order.setBusinessRules(bRules);
 		order.addItem(goods1, 1);
 		order.addItem(goods2, 1);
 		order.addItem(goods3, 1);
