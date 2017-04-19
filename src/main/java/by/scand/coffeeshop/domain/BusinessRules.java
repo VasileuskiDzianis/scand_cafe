@@ -9,4 +9,5 @@ public interface BusinessRules {
 	public void setBusinessRulesDao(BusinessRulesDao businessRulesDao);
 	public int calcDiscount(List<OrderItem> items) throws DomainException;
 	public int calcDelivery(List<OrderItem> items)throws DomainException;
+	public void refreshRules() throws DomainException;
 }

@@ -92,7 +92,7 @@ public class BusinessRulesImpl implements BusinessRules {
 		} else
 			return 0;
 	}
-	
+	@Override
 	public void refreshRules() throws DomainException{
 		try {
 			businessRulesDao.refreshRules(this);
