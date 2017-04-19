@@ -39,6 +39,12 @@ public class LanguageHandler extends HandlerInterceptorAdapter {
 				
 			}
 
+		} else {
+			localization.setLanguage("en");
+			Cookie cookieLang = new Cookie("language",localization.getLanguage());
+			cookieLang.setMaxAge(60*60*24*7);
+			response.addCookie(cookieLang);
+			
 		}
 
 		
