@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -22,6 +24,7 @@ import by.scand.coffeeshop.view.language.Localization;
 @Controller
 @SessionAttributes("order")
 public class BuyController {
+	private static final Logger logger = LoggerFactory.getLogger(BuyController.class);
 	@RequestMapping(value = "buy", method = RequestMethod.POST)
 	public String home(Model model, HttpServletRequest request) {
 		
@@ -38,6 +41,7 @@ public class BuyController {
 					goodsAmount = Integer.parseUnsignedInt(request.getParameter("amount_for_id_" + sort));
 					goodsId = Integer.parseUnsignedInt(sort);
 				} catch (NumberFormatException e) {
+					logger.error("Error user input incorrect number", e);
 					model.addAttribute("message", localization.getAttributes().get("messageIncorrectAmount"));
 					return "message";
 				}
@@ -54,6 +58,7 @@ public class BuyController {
 		try {
 			model.addAttribute("order", coffeeShop.buyGoods(items));
 		} catch (DomainException e) {
+			logger.error("Error with buying goods", e);
 			model.addAttribute("message", localization.getAttributes().get("messageOrderProcessingError"));
 			return "message";
 		}

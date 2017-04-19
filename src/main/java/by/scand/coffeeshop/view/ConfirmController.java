@@ -3,6 +3,8 @@ package by.scand.coffeeshop.view;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import by.scand.coffeeshop.view.language.Localization;
 
 @Controller
 public class ConfirmController {
+	private static final Logger logger = LoggerFactory.getLogger(ConfirmController.class);
 	@RequestMapping(value = {"confirm"}, method = RequestMethod.POST)
 	public String home(Model model, HttpSession session, HttpServletRequest request,
 			@RequestParam("firstName") String firstName,
@@ -33,6 +36,7 @@ public class ConfirmController {
 		if ((!address.trim().equals(""))&(address.length()>=10)){ //address field can't be empty an less than 10
 			buyer = new Buyer(firstName,lastName,patronymic,address);
 		} else{
+			logger.error("Error user input incorrect address");
 			model.addAttribute("message", localization.getAttributes().get("messageFieldAddressEmpty"));
 			return "message";
 		}
@@ -50,6 +54,7 @@ public class ConfirmController {
 			model.addAttribute("message", localization.getAttributes().get("messageOrderAccepted"));
 			} else model.addAttribute("message", localization.getAttributes().get("messageOrderProcessingError"));
 		} catch (DomainException e) {
+			logger.error("Error with adding order to DB", e);
 			model.addAttribute("message", localization.getAttributes().get("messageOrderProcessingError"));
 		}
 		

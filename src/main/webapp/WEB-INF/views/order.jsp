@@ -4,7 +4,7 @@
 <%@ include file="header.jsp"%>
 <%@ include file="menu.jsp"%>
 
-<form action="confirm" method="POST">
+<form action="confirm" method="POST" id="buyer">
 	<h1>${localization.attributes.yourOrder}</h1>
 	<table>
 		<tr>

@@ -7,6 +7,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Coffee Shop</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/vls.css"/>"/>
+	<script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+	<script src="<c:url value="/resources/js/coffeshop_validate_${localization.language}.js"/>"></script>
 	</head>
 <body>
 	<p class="header">${localization.attributes.shopName}</p>

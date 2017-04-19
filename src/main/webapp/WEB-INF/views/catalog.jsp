@@ -4,7 +4,7 @@
 <%@ include file="header.jsp"%>
 <%@ include file="menu.jsp"%>
 
-<form action="buy" method="POST">
+<form action="buy" method="POST" id="catalogform">
 	<h1>${localization.attributes.appealMakeOrder}</h1>
 	<table>
 		<tr>
@@ -26,7 +26,7 @@
 					id="${goods.id}"></td>
 				<td><label for="${goods.id}">${goods.name}</label></td>
 				<td>${goods.price/100} byn</td>
-				<td><input type="text" size="5" name="amount_for_id_${goods.id}" /></td>
+				<td><input type="text" size="5" name="amount_for_id_${goods.id}" class="amountfield"/></td>
 			</tr>
 		</c:forEach>
 

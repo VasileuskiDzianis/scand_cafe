@@ -110,9 +110,7 @@ td {
 
 td.buyer {
 	text-align: right;
-	
 }
-
 
 p.menu {
 	text-align: center;
@@ -143,11 +141,19 @@ a:hover.menu {
 a:active.menu {
 	color: gray;
 }
+
 .order_details {
 	text-align: right;
 	font-weight: bolder;
 }
+
 .order_details_nums {
 	text-align: left;
 	font-weight: bolder;
+}
+
+label.error {
+	color: #ffffff;
+	font-size: 80%;
+	display: block;
 }
