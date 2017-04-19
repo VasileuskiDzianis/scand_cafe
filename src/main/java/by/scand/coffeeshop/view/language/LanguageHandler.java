@@ -8,6 +8,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+/*
+ * This class is using as filter, which
+ * check cookies end set language for all application.
+ * 
+*/
+
 public class LanguageHandler extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -31,7 +37,7 @@ public class LanguageHandler extends HandlerInterceptorAdapter {
 			if (!language.equals("")) { //if cookie was found, set it's language
 				localization.setLanguage(language);
 
-			} else { //if cookie wasn't found, set default language "en" and add cookie
+			} else { //if our cookie wasn't found, set default language "en" and add cookie
 				localization.setLanguage("en");
 				Cookie cookieLang = new Cookie("language",localization.getLanguage());
 				cookieLang.setMaxAge(60*60*24*7);
@@ -39,7 +45,7 @@ public class LanguageHandler extends HandlerInterceptorAdapter {
 				
 			}
 
-		} else {
+		} else { //if no one cookie wasn't found, set default language "en" and add cookie
 			localization.setLanguage("en");
 			Cookie cookieLang = new Cookie("language",localization.getLanguage());
 			cookieLang.setMaxAge(60*60*24*7);

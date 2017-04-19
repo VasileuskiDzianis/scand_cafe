@@ -5,20 +5,6 @@ body {
 	margin: 10px, 20px, 10px, 20px;
 }
 
-p.order, p.catalog {
-	width: 46%;
-	background-color: #d3b895;
-	font-size: 100%;
-	font-weight: normal;
-	color: #352728;
-	padding-right: 2%;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 2%;
-	margin: auto;
-	margin-top: 10px;
-}
-
 p.header {
 	width: 46%;
 	background-color: #d3b895;
@@ -33,13 +19,12 @@ p.header {
 	margin-top: 10px;
 }
 
-p.footer {
-	vertical-align: bottom;
+p.menu {
+	text-align: center;
 	width: 46%;
-	background-color: #d3b895;
-	font-size: 140%;
+	font-size: 100%;
 	font-weight: bolder;
-	color: #352728;
+	background-color: #d3b895;
 	padding-right: 2%;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -48,18 +33,20 @@ p.footer {
 	margin-top: 10px;
 }
 
-p.message {
-	width: 46%;
-	background-color: white;
-	font-size: 90%;
-	font-weight: normal;
-	color: black;
-	padding-right: 2%;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 2%;
-	margin: auto;
-	margin-top: 10px;
+a:link.menu {
+	color: #352728;
+}
+
+a:visited.menu {
+	color: #352728;
+}
+
+a:hover.menu {
+	color: #90694a;
+}
+
+a:active.menu {
+	color: gray;
 }
 
 h1 {
@@ -76,6 +63,44 @@ h2 {
 	color: white;
 	margin: auto;
 	margin-top: 5px;
+}
+
+p.order, p.catalog {
+	width: 46%;
+	background-color: #d3b895;
+	font-size: 100%;
+	font-weight: normal;
+	color: #352728;
+	padding-right: 2%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 2%;
+	margin: auto;
+	margin-top: 10px;
+}
+
+.order_details {
+	text-align: right;
+	font-weight: bolder;
+}
+
+.order_details_nums {
+	text-align: left;
+	font-weight: bolder;
+}
+
+p.message {
+	width: 46%;
+	background-color: white;
+	font-size: 90%;
+	font-weight: normal;
+	color: black;
+	padding-right: 2%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 2%;
+	margin: auto;
+	margin-top: 10px;
 }
 
 table {
@@ -112,48 +137,23 @@ td.buyer {
 	text-align: right;
 }
 
-p.menu {
-	text-align: center;
+label.error {
+	color: #ffffff;
+	font-size: 80%;
+	display: block;
+}
+
+p.footer {
+	vertical-align: bottom;
 	width: 46%;
-	font-size: 100%;
-	font-weight: bolder;
 	background-color: #d3b895;
+	font-size: 140%;
+	font-weight: bolder;
+	color: #352728;
 	padding-right: 2%;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 2%;
 	margin: auto;
 	margin-top: 10px;
-}
-
-a:link.menu {
-	color: #352728;
-}
-
-a:visited.menu {
-	color: #352728;
-}
-
-a:hover.menu {
-	color: #90694a;
-}
-
-a:active.menu {
-	color: gray;
-}
-
-.order_details {
-	text-align: right;
-	font-weight: bolder;
-}
-
-.order_details_nums {
-	text-align: left;
-	font-weight: bolder;
-}
-
-label.error {
-	color: #ffffff;
-	font-size: 80%;
-	display: block;
 }

@@ -84,7 +84,7 @@ public class Order {
 	public void addItem(Goods goods, int amount) {
 		items.add(new OrderItem(goods, amount));
 	}
-
+	//this method calculate value of all order including delivery and discount
 	public int summ() throws DomainException {
 		cost = 0;
 		for (OrderItem orderItem : items) {

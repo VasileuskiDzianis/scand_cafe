@@ -49,11 +49,8 @@ public class CoffeeShop {
 		this.orderDao = orderDao;
 	}
 
-	public Order buyGoods(Map<Integer, Integer> purchases) throws DomainException { // Key - goods Id;
-																// Value -
-																// amount which
-																// we get from
-																// UI
+	public Order buyGoods(Map<Integer, Integer> purchases) throws DomainException { 
+		// Key - goods Id; Value - amount which we get from UI
 		for (Map.Entry<Integer, Integer> entry : purchases.entrySet()) {
 			order.addItem(catalog.getOneItemOfGoods(entry.getKey(), lang), entry.getValue());
 		}
@@ -71,7 +68,7 @@ public class CoffeeShop {
 		order.setDate(date);
 		boolean confirmation = false;
 		try {
-			orderDao.addOne(order);
+			orderDao.addOne(order); // store Order to DataBase
 			confirmation = true;
 		} catch (DaoException e) {
 			throw new DomainException("Order confirmation error");

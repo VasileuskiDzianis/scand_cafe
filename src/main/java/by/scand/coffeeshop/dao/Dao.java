@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 
-public abstract class Dao/*<T>*/ {
+public abstract class Dao {
 	
 	protected Connection getConnection() throws DaoException{
 		
@@ -38,9 +38,6 @@ public abstract class Dao/*<T>*/ {
      return connection;   
 	}
 	
-	//abstract public T getOne(int id) throws DaoException;
-	//abstract public List<T> getAll() throws DaoException;
-	//abstract public int addOne(T object) throws DaoException;
-	//abstract public void addAll(List<T> object) throws DaoException;
+	
 
 }

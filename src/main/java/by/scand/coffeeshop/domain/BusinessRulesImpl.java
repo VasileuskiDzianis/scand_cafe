@@ -5,6 +5,11 @@ import java.util.List;
 import by.scand.coffeeshop.dao.BusinessRulesDao;
 import by.scand.coffeeshop.dao.DaoException;
 
+/*
+*	This class responds for rules of calculating 
+*	delivery cost and discount size  
+*/
+
 public class BusinessRulesImpl implements BusinessRules {
 
 	BusinessRulesDao businessRulesDao;

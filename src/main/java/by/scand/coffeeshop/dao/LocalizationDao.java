@@ -17,16 +17,16 @@ public class LocalizationDao extends Dao {
 		connection = getConnection();
 		PreparedStatement prepStatement = null;
 		ResultSet resultSet = null;
-		String dbReqGetLocalization = "SELECT attribute,"+localization.getLanguage()+" FROM localization;";
-		Map<String,String> parameters = new HashMap<String,String>();
-		
+		String dbReqGetLocalization = "SELECT attribute," + localization.getLanguage() + " FROM localization;";
+		Map<String, String> parameters = new HashMap<String, String>();
+
 		try {
 			prepStatement = connection.prepareStatement(dbReqGetLocalization);
 			resultSet = prepStatement.executeQuery();
 			while (resultSet.next()) {
 				parameters.put(resultSet.getString("attribute"), resultSet.getString(localization.getLanguage()));
 			}
-			
+
 			localization.setAttributes(parameters);
 
 		} catch (SQLException e) {
