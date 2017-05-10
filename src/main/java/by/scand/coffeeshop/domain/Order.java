@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import by.scand.coffeeshop.dao.*;
 
 public class Order {
@@ -12,7 +14,6 @@ public class Order {
 	private List<OrderItem> items;
 	private Date date;
 	private Buyer buyer;
-	private BusinessRules businessRules;
 	private int discount;
 	private int delivery;
 	private int cost;
@@ -61,10 +62,6 @@ public class Order {
 		this.discount = discount;
 	}
 
-	public void setBusinessRules(BusinessRules businessRules) {
-		this.businessRules = businessRules;
-	}
-
 	public int getDelivery() {
 		return delivery;
 	}
@@ -79,23 +76,6 @@ public class Order {
 
 	public void setCost(int cost) {
 		this.cost = cost;
-	}
-
-	public void addItem(Goods goods, int amount) {
-		items.add(new OrderItem(goods, amount));
-	}
-	//this method calculate value of all order including delivery and discount
-	public int summ() throws DomainException {
-		cost = 0;
-		for (OrderItem orderItem : items) {
-			cost += orderItem.getPrice();
-		}
-		discount = businessRules.calcDiscount(items);
-		cost += discount;
-		delivery = businessRules.calcDelivery(items);
-		cost += delivery;
-
-		return cost;
 	}
 
 }

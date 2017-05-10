@@ -15,8 +15,6 @@ public class OrderItem {
 		this.goods = goods;
 		this.amount = amount;
 	}
-	
-	
 
 	public OrderItem(int id, int orderId, Goods goods, int amount) {
 		this.id = id;
@@ -24,12 +22,13 @@ public class OrderItem {
 		this.amount = amount;
 		this.orderId = orderId;
 	}
-	
-	
-	
+
 	public int getCost() {
-		cost = getPrice();
 		return cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
 	}
 
 	public int getOrderId() {
@@ -62,12 +61,6 @@ public class OrderItem {
 
 	public void setAmount(int amount) {
 		this.amount = amount;
-	}
-
-	// return item price
-	public int getPrice() {
-
-		return goods.getPrice() * amount;
 	}
 
 }

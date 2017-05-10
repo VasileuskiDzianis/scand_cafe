@@ -9,8 +9,6 @@ public class Goods {
 
 	public Goods() {
 	}
-	
-	
 
 	public Goods(int id, String name, int price, char disabled) {
 		this.id = id;
@@ -18,8 +16,6 @@ public class Goods {
 		this.price = price;
 		this.disabled = disabled;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -53,13 +49,9 @@ public class Goods {
 		this.disabled = disabled;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Goods [id=" + id + ", name=" + name + ", price=" + price + ", disabled=" + disabled + "]";
 	}
-	
-	
 
 }
