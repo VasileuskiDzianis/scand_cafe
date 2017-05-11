@@ -1,3 +1,3 @@
-<p class="footer">${localization.attributes.shopName}</br></p>
+<p class="footer"><spring:message code="label.shopName"/></br></p>
 </body>
 </html>

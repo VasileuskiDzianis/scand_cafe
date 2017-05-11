@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:jee="http://www.springframework.org/schema/jee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
@@ -27,19 +26,31 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
+	<beans:bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<beans:property name="basename" value="classpath:messages" />
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
+
+	<beans:bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<beans:property name="defaultLocale" value="en" />
+		<beans:property name="cookieName" value="myAppLocaleCookie"></beans:property>
+		<beans:property name="cookieMaxAge" value="86400"></beans:property>
+	</beans:bean>
+
 	<interceptors>
-		<interceptor>
-			<mapping path="/*" />
-			<beans:bean
-				class="by.scand.coffeeshop.view.interceptor.LanguageInterceptor" />
-		</interceptor>
+		<beans:bean
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="lang" />
+		</beans:bean>
 	</interceptors>
 
 	<context:component-scan base-package="by.scand.coffeeshop" />
 
- <!-- Tomcat DataSource JNDI. To configure connection see META-INF/context.xml-->
- 	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/coffeeshop"
-   			expected-type="javax.sql.DataSource" />
+	<!-- Tomcat DataSource JNDI. To configure connection see META-INF/context.xml -->
+	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/coffeeshop"
+		expected-type="javax.sql.DataSource" />
 
 
 </beans:beans>

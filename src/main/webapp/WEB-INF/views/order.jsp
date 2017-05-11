@@ -5,33 +5,33 @@
 <%@ include file="menu.jsp"%>
 
 <form action="confirm" method="POST" id="buyer">
-	<h1>${localization.attributes.yourOrder}</h1>
+	<h1><spring:message code="label.yourOrder"/></h1>
 	<table>
 		<tr>
-			<td class="buyer">${localization.attributes.firstName} <input type="text" size="20" name="firstName" /></td>
+			<td class="buyer"><spring:message code="label.firstName"/> <input type="text" size="20" name="firstName" /></td>
 		</tr>
 		<tr>
-			<td class="buyer">${localization.attributes.lastName} <input type="text" size="20" name="lastName" /></td>
+			<td class="buyer"><spring:message code="label.lastName"/> <input type="text" size="20" name="lastName" /></td>
 		</tr>
 		<tr>
-			<td class="buyer">${localization.attributes.patronymic} <input type="text" size="20" name="patronymic" /></td>
+			<td class="buyer"><spring:message code="label.patronymic"/> <input type="text" size="20" name="patronymic" /></td>
 		</tr>
 		<tr>
-			<td class="buyer">${localization.attributes.address} <input type="text" size="20" name="address" /></td>
+			<td class="buyer"><spring:message code="label.address"/> <input type="text" size="20" name="address" /></td>
 		</tr>
 
 
 		<tr>
-			<td class="buyer"><input type="submit" value="${localization.attributes.confirm}" /></td>
+			<td class="buyer"><input type="submit" value="<spring:message code="label.confirm"/>" /></td>
 		</tr>
 	</table>
 
 	<table>
 		<tr>
-			<th>${localization.attributes.coffeeSort}</th>
-			<th>${localization.attributes.price}</th>
-			<th>${localization.attributes.amount}</th>
-			<th>${localization.attributes.cost}</th>
+			<th><spring:message code="label.coffeeSort"/></th>
+			<th><spring:message code="label.price"/></th>
+			<th><spring:message code="label.amount"/></th>
+			<th><spring:message code="label.cost"/></th>
 		</tr>
 		<c:forEach var="orderItem" items="${order.items}" varStatus="line">
 			<c:if test="${(line.count mod 2) ne 0}">
@@ -46,10 +46,10 @@
 				<td>${orderItem.cost/100} byn</td>
 			</tr>
 		</c:forEach>
-<tr><td colspan="3" class="order_details">${localization.attributes.summ}</td><td class="order_details_nums">${(order.cost-order.discount-order.delivery)/100} byn</td></tr>
-<tr><td colspan="3" class="order_details">${localization.attributes.delivery}</td><td class="order_details_nums">${order.delivery/100} byn</td></tr>
-<tr><td colspan="3" class="order_details">${localization.attributes.discount}</td><td class="order_details_nums">${order.discount/100} byn</td></tr>
-<tr><td colspan="3" class="order_details">${localization.attributes.total}</td><td class="order_details_nums">${order.cost/100} byn</td></tr>
+<tr><td colspan="3" class="order_details"><spring:message code="label.summ"/></td><td class="order_details_nums">${(order.cost-order.discount-order.delivery)/100} byn</td></tr>
+<tr><td colspan="3" class="order_details"><spring:message code="label.delivery"/></td><td class="order_details_nums">${order.delivery/100} byn</td></tr>
+<tr><td colspan="3" class="order_details"><spring:message code="label.discount"/></td><td class="order_details_nums">${order.discount/100} byn</td></tr>
+<tr><td colspan="3" class="order_details"><spring:message code="label.total"/></td><td class="order_details_nums">${order.cost/100} byn</td></tr>
 
 	</table>
 

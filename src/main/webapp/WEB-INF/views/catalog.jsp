@@ -5,13 +5,13 @@
 <%@ include file="menu.jsp"%>
 
 <form action="buy" method="POST" id="catalogform">
-	<h1>${localization.attributes.appealMakeOrder}</h1>
+	<h1><spring:message code="label.appealMakeOrder"/></h1>
 	<table>
 		<tr>
 <th></th>
-<th>${localization.attributes.coffeeSort}</th>
-<th>${localization.attributes.price}</th>
-<th>${localization.attributes.amount}</th>
+<th><spring:message code="label.coffeeSort"/></th>
+<th><spring:message code="label.price"/></th>
+<th><spring:message code="label.amount"/></th>
 
 		</tr>
 		<c:forEach var="goods" items="${catalog}" varStatus="line">
@@ -31,9 +31,9 @@
 		</c:forEach>
 
 		<tr>
-			<td colspan="4"><input type="submit" value="${localization.attributes.order}" /></td>
+			<td colspan="4"><input type="submit" value="<spring:message code="label.order"/>" /></td>
 		</tr>
-		<tr><td colspan=4>* - ${localization.attributes.each} ${nCupFree} ${localization.attributes.cupFree}</td></tr>
+		<tr><td colspan=4>* - <spring:message code="label.each"/> ${nCupFree} <spring:message code="label.cupFree"/></td></tr>
 	</table>
 </form>
 
