@@ -17,49 +17,18 @@ import by.scand.coffeeshop.service.order.OrderService;
 @Service
 public class ShopServiceImpl implements ShopService {
 
-	private List<Goods> catalog;
-	private Order order;
 	@Autowired
 	private GoodsService goodsService;
-	private String lang;
 	@Autowired
 	private OrderService orderService;
 
-	public ShopServiceImpl() {
-	}
-
-	public void setGoodsService(GoodsService goodsService) {
-		this.goodsService = goodsService;
-	}
-
-	public void setOrderService(OrderService orderService) {
-		this.orderService = orderService;
-	}
-
-	public String getLang() {
-		return lang;
-	}
-
 	@Override
-	public void setLang(String lang) {
-		this.lang = lang;
-	}
-
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-
-	@Override
-	public Order buyGoods(Map<Integer, Integer> purchases) throws ServiceException {
+	public Order buyGoods(Map<Integer, Integer> purchases, String language) throws ServiceException {
 		// Key - goods Id; Value - amount which we get from UI
-		order = new Order();
+		Order order = new Order();
 		for (Map.Entry<Integer, Integer> entry : purchases.entrySet()) {
 			try {
-				orderService.addItem(goodsService.getOneGoods(entry.getKey(), lang), entry.getValue(), order);
+				orderService.addItem(goodsService.getOneGoods(entry.getKey(), language), entry.getValue(), order);
 			} catch (ServiceException e) {
 				throw new ServiceException("Error buying goods", e);
 			}
@@ -69,9 +38,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<Goods> getCatalog() throws ServiceException {
-		catalog = goodsService.getAllGoods(lang);
-		return catalog;
+	public List<Goods> getCatalog(String language) throws ServiceException {
+		return goodsService.getAllGoods(language);
 	}
 
 	@Override

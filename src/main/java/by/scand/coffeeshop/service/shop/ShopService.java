@@ -10,11 +10,10 @@ import by.scand.coffeeshop.exception.ServiceException;
 
 public interface ShopService {
 
-	void setLang(String lang);
 
-	Order buyGoods(Map<Integer, Integer> purchases) throws ServiceException;
+	Order buyGoods(Map<Integer, Integer> purchases, String language) throws ServiceException;
 
-	List<Goods> getCatalog() throws ServiceException;
+	List<Goods> getCatalog(String language) throws ServiceException;
 
 	boolean confirmOrder(Buyer buyer, Order order) throws ServiceException;
 

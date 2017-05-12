@@ -1,6 +1,5 @@
 package by.scand.coffeeshop.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -12,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,9 +53,8 @@ public class BuyController {
 			model.addAttribute("message", messageSource.getMessage("label.messageNoSelectedSorts", null, locale));
 			return "message";
 		}
-		shopService.setLang(locale.getLanguage());
 		try {
-			model.addAttribute("order", shopService.buyGoods(buyItems));
+			model.addAttribute("order", shopService.buyGoods(buyItems, locale.getLanguage()));
 		} catch (ServiceException e) {
 			LOGGER.error("Error with buying goods", e);
 			model.addAttribute("message", messageSource.getMessage("label.messageOrderProcessingError", null, locale));

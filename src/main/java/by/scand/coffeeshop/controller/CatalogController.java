@@ -29,10 +29,10 @@ public class CatalogController {
 	@RequestMapping(value = { "/", "home" }, method = RequestMethod.GET)
 	public String home(Model model, Locale locale) {
 
-		shopService.setLang(locale.getLanguage());
+		//shopService.setLanguage(locale.getLanguage());
 
 		try {
-			model.addAttribute("catalog", shopService.getCatalog());
+			model.addAttribute("catalog", shopService.getCatalog(locale.getLanguage()));
 		} catch (ServiceException e) {
 				LOGGER.error("Error showCatalog()", e);
 				model.addAttribute("message", messageSource.getMessage("message.internalServerError", null, locale));

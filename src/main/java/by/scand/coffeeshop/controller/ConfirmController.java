@@ -42,8 +42,6 @@ public class ConfirmController {
 			return "message";
 		} 
 
-		shopService.setLang(locale.getLanguage());
-
 		try {
 			if (shopService.confirmOrder(buyer, order)) {
 				model.addAttribute("message", messageSource.getMessage("label.messageOrderAccepted", null, locale));
