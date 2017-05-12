@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -33,21 +33,14 @@ public class ConfirmController {
 	@RequestMapping(value = { "confirm" }, method = RequestMethod.POST)
 	public String home(Model model, Locale locale,
 			@SessionAttribute Order order, 
-			@RequestParam("firstName") String firstName,
-			@RequestParam("lastName") String lastName, 
-			@RequestParam("patronymic") String patronymic,
-			@RequestParam("address") String address, 
+			@ModelAttribute Buyer buyer, 
 			SessionStatus status) {
 
-		Buyer buyer;
-
-		if (validateAddress(address)) {
-			buyer = new Buyer(firstName, lastName, patronymic, address);
-		} else {
+		if (!validateAddress(buyer.getAddress())) {
 			LOGGER.error("Error user input incorrect address");
 			model.addAttribute("message", messageSource.getMessage("label.messageFieldAddressEmpty", null, locale));
 			return "message";
-		}
+		} 
 
 		shopService.setLang(locale.getLanguage());
 
@@ -65,7 +58,7 @@ public class ConfirmController {
 		return "message";
 	}
 
-	protected static boolean validateAddress(String address) {
+	private static boolean validateAddress(String address) {
 		String regexC = "[a-zA-zа-яА-я0-9 ,.№-]{10,30}"; // minimum 10 characters address begins from letter
 		Pattern pattern = Pattern.compile(regexC);
 		Matcher m = pattern.matcher(address.trim());

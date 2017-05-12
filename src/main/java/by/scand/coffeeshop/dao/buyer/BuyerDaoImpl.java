@@ -29,7 +29,7 @@ public class BuyerDaoImpl extends BaseDao implements BuyerDao {
 			prepStatement.setString(1, buyer.getFirstName());
 			prepStatement.setString(2, buyer.getLastName());
 			prepStatement.setString(3, buyer.getPatronymic());
-			prepStatement.setString(4, buyer.getShippingAddress());
+			prepStatement.setString(4, buyer.getAddress());
 			prepStatement.execute();
 			generatedKey = prepStatement.getGeneratedKeys();
 			if (generatedKey.next()) {

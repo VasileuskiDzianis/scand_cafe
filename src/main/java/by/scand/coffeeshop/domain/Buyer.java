@@ -11,20 +11,6 @@ public class Buyer {
 	public Buyer() {
 	}
 
-	public Buyer(int id, String firstName, String lastName, String patronymic, String shippingAddress) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.patronymic = patronymic;
-		this.address = shippingAddress;
-	}
-	public Buyer(String firstName, String lastName, String patronymic, String shippingAddress) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.patronymic = patronymic;
-		this.address = shippingAddress;
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -57,12 +43,12 @@ public class Buyer {
 		this.patronymic = patronymic;
 	}
 
-	public String getShippingAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setShippingAddress(String shippingAddress) {
-		this.address = shippingAddress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 }

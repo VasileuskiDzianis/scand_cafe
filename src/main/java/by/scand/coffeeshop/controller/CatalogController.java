@@ -35,14 +35,14 @@ public class CatalogController {
 			model.addAttribute("catalog", shopService.getCatalog());
 		} catch (ServiceException e) {
 				LOGGER.error("Error showCatalog()", e);
-				model.addAttribute("message", messageSource.getMessage("label.messageOrderProcessingError", null, locale));
+				model.addAttribute("message", messageSource.getMessage("message.internalServerError", null, locale));
 				return "message";
 			}
 		try {
 			model.addAttribute("nCupFree", discountService.getNumberOfFreeCup());
 		} catch (ServiceException e) {
 			LOGGER.error("Error getting business rules parameters", e);
-			model.addAttribute("message", "Internal Server Error");
+			model.addAttribute("message", messageSource.getMessage("message.internalServerError", null, locale));
 			return "message";
 		}
 
