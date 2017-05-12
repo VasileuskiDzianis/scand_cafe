@@ -15,7 +15,12 @@ public class BuyerDaoImplTest {
 	@Ignore
 	@Test
 	public void testAddOneBuyer() throws DaoException {
-		Buyer buyer = new Buyer(1,"Тест","Тест","Тест","Тест");
+		Buyer buyer = new Buyer();
+		buyer.setId(1);
+		buyer.setFirstName("Test");
+		buyer.setLastName("Test");
+		buyer.setPatronymic("Test");
+		buyer.setAddress("Test");
 		BuyerDao dao = new BuyerDaoImpl();
 		assertNotSame(0, dao.addOne(buyer));
 		

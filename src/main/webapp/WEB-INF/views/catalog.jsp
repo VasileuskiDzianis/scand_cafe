@@ -22,7 +22,7 @@
 			<tr>
 			</c:if>
 			
-			   <td><input type="checkbox" name="sort" value="${goods.id}"
+			   <td><input type="checkbox" name="chosenIds" value="${goods.id}"
 					id="${goods.id}"></td>
 				<td><label for="${goods.id}">${goods.name}</label></td>
 				<td>${goods.price/100} byn</td>

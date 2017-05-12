@@ -1,5 +1,6 @@
 package by.scand.coffeeshop.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -12,6 +13,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,17 +33,17 @@ public class BuyController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BuyController.class);
 
 	@RequestMapping(value = "buy", method = RequestMethod.POST)
-	public String home(Model model, Locale locale, @RequestParam MultiValueMap<String, String> requestParameters) {
-		Map<Integer, Integer> buyItems;
-		List<String> chosenSorts;
-		chosenSorts = requestParameters.get("sort");
-		if (chosenSorts != null) {
+	public String buy(Model model, Locale locale, 
+			@RequestParam Map<String, String> orderParameters,
+			@RequestParam("chosenIds") List<Integer> chosenIds) {
+		Map<Integer, Integer> buyItems; //K - product id; V - amount
+		if (chosenIds != null) {
 			buyItems = new HashMap<Integer, Integer>();
 			Integer goodsId, goodsAmount;
-			for (String sort : chosenSorts) {
+			for (Integer id : chosenIds) {
 				try {
-					goodsAmount = Integer.parseUnsignedInt(requestParameters.get("amount_for_id_" + sort).get(0));
-					goodsId = Integer.parseUnsignedInt(sort);
+					goodsAmount = Integer.parseUnsignedInt(orderParameters.get("amount_for_id_" + id));
+					goodsId = id;
 				} catch (NumberFormatException e) {
 					LOGGER.error("Error user input incorrect number", e);
 					model.addAttribute("message",
