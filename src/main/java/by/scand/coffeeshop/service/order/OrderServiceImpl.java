@@ -7,8 +7,6 @@ import by.scand.coffeeshop.dao.order.OrderDao;
 import by.scand.coffeeshop.domain.Goods;
 import by.scand.coffeeshop.domain.Order;
 import by.scand.coffeeshop.domain.OrderItem;
-import by.scand.coffeeshop.exception.DaoException;
-import by.scand.coffeeshop.exception.ServiceException;
 import by.scand.coffeeshop.service.delivery.DeliveryService;
 import by.scand.coffeeshop.service.discount.DiscountService;
 import by.scand.coffeeshop.service.orderitem.OrderItemService;
@@ -24,24 +22,8 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	OrderItemService orderItemService;
 
-	public void setDeliveryService(DeliveryService deliveryService) {
-		this.deliveryService = deliveryService;
-	}
-
-	public void setDiscountService(DiscountService discountService) {
-		this.discountService = discountService;
-	}
-
-	public void setOrderItemService(OrderItemService orderItemService) {
-		this.orderItemService = orderItemService;
-	}
-
-	public void setOrderDao(OrderDao orderDao) {
-		this.orderDao = orderDao;
-	}
-
 	@Override
-	public int sum(Order order) throws ServiceException {
+	public int sum(Order order) {
 		int cost = 0;
 		for (OrderItem orderItem : order.getItems()) {
 			cost += orderItemService.getPrice(orderItem);
@@ -62,13 +44,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public int saveOrder(Order order) throws ServiceException {
+	public int saveOrder(Order order) {
 		int id = 0;
-		try {
-			id = orderDao.addOne(order);
-		} catch (DaoException e) {
-			throw new ServiceException("Saving order error", e);
-		}
+		id = orderDao.addOne(order);
 		return id;
 	}
 

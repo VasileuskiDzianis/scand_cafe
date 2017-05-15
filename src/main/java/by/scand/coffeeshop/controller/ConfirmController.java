@@ -33,7 +33,7 @@ public class ConfirmController {
 
 	@RequestMapping(value = { "confirm" }, method = RequestMethod.POST)
 	public String home(Model model, Locale locale, @SessionAttribute Order order, @ModelAttribute Buyer buyer,
-			SessionStatus status) throws Exception {
+			SessionStatus status) {
 
 		if (!validateAddress(buyer.getAddress())) {
 			LOGGER.error("Error user input incorrect address");
@@ -51,7 +51,7 @@ public class ConfirmController {
 	}
 
 	private static boolean validateAddress(String address) {
-		String regEx = "[a-zA-zа-яА-я0-9 ,.№-]{10,30}"; // minimum 10 characters
+		String regEx = "[a-zA-zа-яА-я0-9 ,.№-]{10,90}"; // minimum 10 characters
 														// address begins from
 														// letter
 		Pattern pattern = Pattern.compile(regEx);

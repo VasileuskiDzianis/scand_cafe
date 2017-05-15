@@ -32,7 +32,7 @@ public class BuyController {
 
 	@RequestMapping(value = "buy", method = RequestMethod.POST)
 	public String buy(Model model, Locale locale, @RequestParam Map<String, String> orderParameters,
-			@RequestParam(name="chosenIds", required=false) List<Integer> chosenIds) throws Exception {
+			@RequestParam(name="chosenIds", required=false) List<Integer> chosenIds) {
 		Map<Integer, Integer> buyItems; // K - product id; V - amount
 		if (chosenIds == null) {
 			model.addAttribute("message", messageSource.getMessage("label.messageNoSelectedSorts", null, locale));

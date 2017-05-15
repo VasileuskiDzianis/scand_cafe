@@ -6,18 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import by.scand.coffeeshop.dao.BaseDao;
 import by.scand.coffeeshop.dao.buyer.BuyerDao;
 import by.scand.coffeeshop.dao.orderitem.OrderItemDao;
-import by.scand.coffeeshop.domain.Buyer;
 import by.scand.coffeeshop.domain.Order;
 import by.scand.coffeeshop.domain.OrderItem;
-import by.scand.coffeeshop.exception.DaoException;
 
 @Repository
 public class OrderDaoImpl extends BaseDao implements OrderDao {
@@ -35,7 +30,7 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
 	}
 
 	@Override
-	public int addOne(Order order) throws DaoException {
+	public int addOne(Order order) {
 		int buyerId;
 		buyerId = buyerDao.addOne(order.getBuyer());
 
@@ -60,7 +55,7 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DaoException("Error: adding Order!", e);
+			throw new RuntimeException("Error: adding Order!", e);
 		} finally {
 			closeAll(generatedKey, prepStatement, connection);
 		}

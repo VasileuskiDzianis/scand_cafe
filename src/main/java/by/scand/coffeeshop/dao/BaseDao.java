@@ -9,11 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
-
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-
-import by.scand.coffeeshop.exception.DaoException;
 
 public abstract class BaseDao {
 
@@ -24,7 +21,7 @@ public abstract class BaseDao {
 		this.dataSource = dataSource;
 	}
 
-	protected Connection getConnection() throws DaoException {
+	protected Connection getConnection() {
 
 		Properties property = new Properties();
 		Connection connection = null;
@@ -35,26 +32,26 @@ public abstract class BaseDao {
 			inputStream.close();
 
 		} catch (IOException e) {
-			throw new DaoException("Error: property file wasn't found!", e);
+			throw new RuntimeException("Error: property file wasn't found!", e);
 		}
 		// for using Tomcat DBCP set connectionType=dbcp in db.properties
 		if (property.getProperty("connectionType").equals("dbcp")) {
 			try {
 				connection = dataSource.getConnection();
 			} catch (SQLException e) {
-				throw new DaoException("Error: getting connection from DBCP was faulted", e);
+				throw new RuntimeException("Error: getting connection from DBCP was faulted", e);
 			}
 		} else {
 			try {
 				Class.forName(property.getProperty("driverClassName"));
 			} catch (ClassNotFoundException e) {
-				throw new DaoException("Error: JDBC driver wasn't found!", e);
+				throw new RuntimeException("Error: JDBC driver wasn't found!", e);
 			}
 
 			try {
 				connection = DriverManager.getConnection(property.getProperty("url"), property);
 			} catch (SQLException e) {
-				throw new DaoException("Error: getting connection was faulted", e);
+				throw new RuntimeException("Error: getting connection was faulted", e);
 			}
 
 		}
@@ -62,28 +59,28 @@ public abstract class BaseDao {
 		return connection;
 	}
 
-	protected void closeAll(ResultSet resultSet, Statement statement, Connection connection) throws DaoException {
+	protected void closeAll(ResultSet resultSet, Statement statement, Connection connection) {
 		try {
 			if (resultSet != null)
 				resultSet.close();
 		} catch (SQLException e) {
-			throw new DaoException("Error: result set closing", e);
+			throw new RuntimeException("Error: result set closing", e);
 		}
 		try {
 			if (statement != null)
 				statement.close();
 		} catch (SQLException e) {
-			throw new DaoException("Error: prepared statement closing", e);
+			throw new RuntimeException("Error: prepared statement closing", e);
 		}
 		try {
 			if (connection != null)
 				connection.close();
 		} catch (SQLException e) {
-			throw new DaoException("Error: connection closing", e);
+			throw new RuntimeException("Error: connection closing", e);
 		}
 	}
 
-	protected int getOneIntProperty(String tableName, String propertyName) throws DaoException {
+	protected int getOneIntProperty(String tableName, String propertyName) {
 		Connection connection = getConnection();
 		PreparedStatement prepStatement = null;
 		ResultSet resultSet = null;
@@ -98,7 +95,7 @@ public abstract class BaseDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DaoException("Error: getting int property from database", e);
+			throw new RuntimeException("Error: getting int property from database", e);
 		} finally {
 			closeAll(resultSet, prepStatement, connection);
 		}

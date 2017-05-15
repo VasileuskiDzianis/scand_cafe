@@ -4,18 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
-
 import org.springframework.stereotype.Repository;
-
 import by.scand.coffeeshop.dao.BaseDao;
 import by.scand.coffeeshop.domain.OrderItem;
-import by.scand.coffeeshop.exception.DaoException;
 
 @Repository
 public class OrderItemDaoImpl extends BaseDao implements OrderItemDao {
 
 	@Override
-	public void addAll(List<OrderItem> orderItems) throws DaoException {
+	public void addAll(List<OrderItem> orderItems) {
 		Connection connection;
 		connection = getConnection();
 		PreparedStatement prepStatement = null;
@@ -35,7 +32,7 @@ public class OrderItemDaoImpl extends BaseDao implements OrderItemDao {
 			connection.commit();
 
 		} catch (SQLException e) {
-			throw new DaoException("Error: adding order items!", e);
+			throw new RuntimeException("Error: adding order items!", e);
 		} finally {
 			closeAll(null, prepStatement, connection);
 		}

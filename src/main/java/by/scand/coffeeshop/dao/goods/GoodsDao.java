@@ -7,8 +7,8 @@ import by.scand.coffeeshop.exception.DaoException;
 
 public interface GoodsDao {
 
-	Goods getOne(int id, String lang) throws DaoException;
+	Goods getOne(int id, String lang);
 
-	List<Goods> getAll(String lang) throws DaoException;
+	List<Goods> getAll(String lang);
 
 }

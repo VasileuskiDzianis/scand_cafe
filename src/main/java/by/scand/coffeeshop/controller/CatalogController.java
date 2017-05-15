@@ -22,7 +22,7 @@ public class CatalogController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CatalogController.class);
 
 	@RequestMapping(value = { "/", "home" }, method = RequestMethod.GET)
-	public String home(Model model, Locale locale) throws Exception {
+	public String home(Model model, Locale locale) {
 
 		model.addAttribute("catalog", shopService.getCatalog(locale.getLanguage()));
 		model.addAttribute("nCupFree", discountService.getNumberOfFreeCup());

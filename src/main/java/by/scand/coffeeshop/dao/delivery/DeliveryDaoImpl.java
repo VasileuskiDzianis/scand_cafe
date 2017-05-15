@@ -1,32 +1,26 @@
 package by.scand.coffeeshop.dao.delivery;
 
 import org.springframework.stereotype.Repository;
-
 import by.scand.coffeeshop.dao.BaseDao;
-import by.scand.coffeeshop.exception.DaoException;
 
 @Repository
 public class DeliveryDaoImpl extends BaseDao implements DeliveryDao {
 
 	@Override
-	public int getDeliveryCost() throws DaoException {
+	public int getDeliveryCost() {
 		int deliveryCost = 0; // coins
-		try {
-			deliveryCost = getOneIntProperty("business_rules", "delivery");
-		} catch (DaoException e) {
-			throw new DaoException("Error: getting value of delivery cost from database", e);
-		}
+
+		deliveryCost = getOneIntProperty("business_rules", "delivery");
+
 		return deliveryCost;
 	}
 
 	@Override
-	public int getFreeDeliveryLevel() throws DaoException{
+	public int getFreeDeliveryLevel() {
 		int deliveryFreeLevel = 0; // coins
-		try {
-			deliveryFreeLevel = getOneIntProperty("business_rules", "free_delivery");
-		} catch (DaoException e) {
-			throw new DaoException("Error: getting value of free delivery level from database", e);
-		}
+
+		deliveryFreeLevel = getOneIntProperty("business_rules", "free_delivery");
+
 		return deliveryFreeLevel;
 	}
 

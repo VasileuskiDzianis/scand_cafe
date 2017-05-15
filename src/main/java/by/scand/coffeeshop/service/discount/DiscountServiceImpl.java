@@ -4,11 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import by.scand.coffeeshop.dao.discount.DiscountDao;
 import by.scand.coffeeshop.domain.OrderItem;
-import by.scand.coffeeshop.exception.DaoException;
-import by.scand.coffeeshop.exception.ServiceException;
 
 @Service
 public class DiscountServiceImpl implements DiscountService {
@@ -21,7 +18,7 @@ public class DiscountServiceImpl implements DiscountService {
 	}
 
 	@Override
-	public int calcDiscount(List<OrderItem> items) throws ServiceException {
+	public int calcDiscount(List<OrderItem> items) {
 		int discount = 0;
 		if (getNumberOfFreeCup() != 0) {
 			for (OrderItem orderItem : items) {
@@ -35,13 +32,9 @@ public class DiscountServiceImpl implements DiscountService {
 	}
 
 	@Override
-	public int getNumberOfFreeCup() throws ServiceException {
+	public int getNumberOfFreeCup() {
 		int numberOfFreeCup = 0;
-		try {
-			numberOfFreeCup = discountDao.getNumberOfFreeCup();
-		} catch (DaoException e) {
-			throw new ServiceException("Getting number of free cup error", e);
-		}
+		numberOfFreeCup = discountDao.getNumberOfFreeCup();
 		return numberOfFreeCup;
 	}
 

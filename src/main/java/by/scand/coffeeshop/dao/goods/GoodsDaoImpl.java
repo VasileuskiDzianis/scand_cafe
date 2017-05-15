@@ -6,27 +6,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.annotation.Resource;
-import javax.sql.DataSource;
-
 import org.springframework.stereotype.Repository;
-
 import by.scand.coffeeshop.dao.BaseDao;
 import by.scand.coffeeshop.domain.Goods;
-import by.scand.coffeeshop.exception.DaoException;
 
 @Repository
 public class GoodsDaoImpl extends BaseDao implements GoodsDao {
 
-	
-		
 	@Override
-	public Goods getOne(int id, String lang) throws DaoException {
+	public Goods getOne(int id, String lang) {
 		Connection connection = null;
-
 		connection = getConnection();
-				
 		PreparedStatement prepStatement = null;
 		ResultSet resultSet = null;
 		String dbReqGetGoods = "SELECT * FROM goods WHERE id=?;";
@@ -44,7 +34,7 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DaoException("Error: getting one Goods!", e);
+			throw new RuntimeException("Error: getting one Goods!", e);
 		} finally {
 			closeAll(resultSet, prepStatement, connection);
 		}
@@ -53,11 +43,9 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao {
 	}
 
 	@Override
-	public List<Goods> getAll(String lang) throws DaoException {
+	public List<Goods> getAll(String lang) {
 		Connection connection;
-
 		connection = getConnection();
-		
 		PreparedStatement prepStatement = null;
 		ResultSet resultSet = null;
 		String dbReqGetAllGoods = "SELECT * FROM goods WHERE disabled=\'N\';";
@@ -72,7 +60,7 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DaoException("Error: getting all Goods!", e);
+			throw new RuntimeException("Error: getting all Goods!", e);
 		} finally {
 			closeAll(resultSet, prepStatement, connection);
 		}

@@ -5,18 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import org.springframework.stereotype.Repository;
-
 import by.scand.coffeeshop.dao.BaseDao;
 import by.scand.coffeeshop.domain.Buyer;
-import by.scand.coffeeshop.exception.DaoException;
 
 @Repository
 public class BuyerDaoImpl extends BaseDao implements BuyerDao {
 
 	@Override
-	public int addOne(Buyer buyer) throws DaoException {
+	public int addOne(Buyer buyer) {
 		Connection connection;
 		connection = getConnection();
 		PreparedStatement prepStatement = null;
@@ -37,7 +34,7 @@ public class BuyerDaoImpl extends BaseDao implements BuyerDao {
 			}
 
 		} catch (SQLException e) {
-			throw new DaoException("Error: adding Buyer!", e);
+			throw new RuntimeException("Error: adding Buyer!", e);
 		} finally
 
 		{
