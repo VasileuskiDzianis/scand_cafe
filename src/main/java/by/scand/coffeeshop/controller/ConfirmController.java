@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.context.NoSuchMessageException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import by.scand.coffeeshop.domain.Buyer;
 import by.scand.coffeeshop.domain.Order;
-import by.scand.coffeeshop.exception.ServiceException;
 import by.scand.coffeeshop.service.shop.ShopService;
 
 @Controller
@@ -37,15 +35,15 @@ public class ConfirmController {
 
 		if (!validateAddress(buyer.getAddress())) {
 			LOGGER.error("Error user input incorrect address");
-			model.addAttribute("message", messageSource.getMessage("label.messageFieldAddressEmpty", null, locale));
+			model.addAttribute("message", messageSource.getMessage("message.FieldAddressEmpty", null, locale));
 			return "message";
 		}
 
 		if (!shopService.confirmOrder(buyer, order)) {
-			model.addAttribute("message", messageSource.getMessage("label.messageOrderProcessingError", null, locale));
+			model.addAttribute("message", messageSource.getMessage("message.OrderProcessingError", null, locale));
 		}
 
-		model.addAttribute("message", messageSource.getMessage("label.messageOrderAccepted", null, locale));
+		model.addAttribute("message", messageSource.getMessage("message.OrderAccepted", null, locale));
 		status.setComplete();
 		return "message";
 	}

@@ -8,13 +8,12 @@ import org.junit.Test;
 import by.scand.coffeeshop.dao.buyer.BuyerDao;
 import by.scand.coffeeshop.dao.buyer.BuyerDaoImpl;
 import by.scand.coffeeshop.domain.Buyer;
-import by.scand.coffeeshop.exception.DaoException;
 
 public class BuyerDaoImplTest {
 
 	@Ignore
 	@Test
-	public void testAddOneBuyer() throws DaoException {
+	public void testAddOneBuyer(){
 		Buyer buyer = new Buyer();
 		buyer.setId(1);
 		buyer.setFirstName("Test");

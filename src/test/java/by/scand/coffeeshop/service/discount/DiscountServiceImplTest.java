@@ -1,18 +1,14 @@
 package by.scand.coffeeshop.service.discount;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-
 import by.scand.coffeeshop.dao.discount.DiscountDao;
 import by.scand.coffeeshop.domain.Goods;
 import by.scand.coffeeshop.domain.OrderItem;
-import by.scand.coffeeshop.exception.DaoException;
-import by.scand.coffeeshop.exception.ServiceException;
 
 import static org.mockito.Mockito.*;
 
@@ -25,7 +21,9 @@ public class DiscountServiceImplTest {
 
 	@Mock
 	private DiscountDao discountDao;
-	private DiscountServiceImpl discountService;
+	@InjectMocks
+	private DiscountServiceImpl discountService = new DiscountServiceImpl();;
+	
 	private Goods goods1 = new Goods(1, "Coffe sort 1", 150, 'N');
 	private Goods goods2 = new Goods(2, "Coffe sort 2", 200, 'N');
 	private Goods goods3 = new Goods(3, "Coffe sort 3", 100, 'N');
@@ -36,16 +34,19 @@ public class DiscountServiceImplTest {
 	private OrderItem orderItem4 = new OrderItem(goods4, 11);
 
 	@Test
-	public void testCalcDiscount() throws DaoException, ServiceException {
-		when(discountDao.getNumberOfFreeCup()).thenReturn(5);
-		discountService = new DiscountServiceImpl();
-		discountService.setDiscountDao(discountDao);
-
+	public void testCalcDiscount(){
+		
+		int nuberOfFreeCup = 5;
+		when(discountDao.getNumberOfFreeCup()).thenReturn(nuberOfFreeCup);
 		List<OrderItem> items = new ArrayList<OrderItem>(Arrays.asList(orderItem1, orderItem2, orderItem3));
-		assertEquals(0, discountService.calcDiscount(items));
+		
+		int result = discountService.calcDiscount(items);
+		assertEquals(0, result);
+		
 		items.add(orderItem4);
+		result = discountService.calcDiscount(items);
 		// discount should be: 2*(-150)
-		assertEquals(-300, discountService.calcDiscount(items));
+		assertEquals(-300, result);
 
 	}
 

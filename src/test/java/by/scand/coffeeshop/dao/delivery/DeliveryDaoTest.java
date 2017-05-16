@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import by.scand.coffeeshop.dao.delivery.DeliveryDao;
 import by.scand.coffeeshop.dao.delivery.DeliveryDaoImpl;
-import by.scand.coffeeshop.exception.DaoException;
 
 public class DeliveryDaoTest {
 
@@ -18,11 +17,11 @@ public class DeliveryDaoTest {
 	}
 	
 	@Test
-	public void testGetDeliveryCost() throws DaoException {
+	public void testGetDeliveryCost() {
 		assertEquals(200, deliveryDao.getDeliveryCost());
 	}
 	@Test
-	public void testGetFreeDeliveryLevel() throws DaoException {
+	public void testGetFreeDeliveryLevel() {
 		assertEquals(1000, deliveryDao.getFreeDeliveryLevel());
 	}
 

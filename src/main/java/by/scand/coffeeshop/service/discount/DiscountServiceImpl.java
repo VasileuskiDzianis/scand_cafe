@@ -13,10 +13,6 @@ public class DiscountServiceImpl implements DiscountService {
 	@Autowired
 	DiscountDao discountDao;
 
-	public void setDiscountDao(DiscountDao discountDao) {
-		this.discountDao = discountDao;
-	}
-
 	@Override
 	public int calcDiscount(List<OrderItem> items) {
 		int discount = 0;

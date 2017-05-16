@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import by.scand.coffeeshop.domain.Buyer;
 import by.scand.coffeeshop.domain.Goods;
 import by.scand.coffeeshop.domain.Order;
-import by.scand.coffeeshop.exception.ServiceException;
 import by.scand.coffeeshop.service.goods.GoodsService;
 import by.scand.coffeeshop.service.order.OrderService;
 

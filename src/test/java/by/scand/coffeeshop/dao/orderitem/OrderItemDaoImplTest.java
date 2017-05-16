@@ -9,7 +9,6 @@ import by.scand.coffeeshop.dao.orderitem.OrderItemDao;
 import by.scand.coffeeshop.dao.orderitem.OrderItemDaoImpl;
 import by.scand.coffeeshop.domain.Goods;
 import by.scand.coffeeshop.domain.OrderItem;
-import by.scand.coffeeshop.exception.DaoException;
 
 public class OrderItemDaoImplTest {
 	private Goods goods1 = new Goods(1, "Coffe sort 1", 150, 'N');
@@ -19,7 +18,7 @@ public class OrderItemDaoImplTest {
 	
 	@Ignore
 	@Test
-	public void testAddAllListOfOrderItem() throws DaoException {
+	public void testAddAllListOfOrderItem() {
 		ArrayList<OrderItem> itemsList = new ArrayList<OrderItem>();
 		itemsList.add(ordItem1);
 		itemsList.add(ordItem2);

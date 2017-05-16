@@ -10,10 +10,6 @@ public class DeliveryServiceImpl implements DeliveryService {
 	@Autowired
 	DeliveryDao deliveryDao;
 
-	public void setDeliveryDao(DeliveryDao deliveryDao) {
-		this.deliveryDao = deliveryDao;
-	}
-
 	@Override
 	public int calcDelivery(int orderSum) {
 		int deliveryFreeLevel = 0;

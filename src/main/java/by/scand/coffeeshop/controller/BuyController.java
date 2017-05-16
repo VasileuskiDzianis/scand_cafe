@@ -35,14 +35,14 @@ public class BuyController {
 			@RequestParam(name="chosenIds", required=false) List<Integer> chosenIds) {
 		Map<Integer, Integer> buyItems; // K - product id; V - amount
 		if (chosenIds == null) {
-			model.addAttribute("message", messageSource.getMessage("label.messageNoSelectedSorts", null, locale));
+			model.addAttribute("message", messageSource.getMessage("message.NoSelectedSorts", null, locale));
 			return "message";
 		}
 		buyItems = new HashMap<Integer, Integer>();
 		Integer goodsId, goodsAmount;
 		for (Integer id : chosenIds) {
 			if (!validateAmount(orderParameters.get("amount_for_id_" + id))) {
-				model.addAttribute("message", messageSource.getMessage("label.messageIncorrectAmount", null, locale));
+				model.addAttribute("message", messageSource.getMessage("message.IncorrectAmount", null, locale));
 				return "message";
 			}
 			goodsAmount = Integer.parseUnsignedInt(orderParameters.get("amount_for_id_" + id));

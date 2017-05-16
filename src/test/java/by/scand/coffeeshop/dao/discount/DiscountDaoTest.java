@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import by.scand.coffeeshop.dao.discount.DiscountDao;
 import by.scand.coffeeshop.dao.discount.DiscountDaoImpl;
-import by.scand.coffeeshop.exception.DaoException;
 
 public class DiscountDaoTest {
 
@@ -18,8 +17,10 @@ public class DiscountDaoTest {
 	}
 	
 	@Test
-	public void testGetNumberOfFreeCup() throws DaoException {
-		assertEquals(5, discountDao.getNumberOfFreeCup());
+	public void testGetNumberOfFreeCup() {
+		int numberOfFreeCup = 5;
+		
+		assertEquals(numberOfFreeCup, discountDao.getNumberOfFreeCup());
 	}
 
 }
