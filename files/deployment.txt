@@ -1,0 +1,25 @@
+To deploy this application please do this:
+
+1) Select mysql in your local pc, create a new database: coffee_shop
+username: dan, password: pilotpen
+You can do the import database from my newest database dump:
+https://github.com/VasileuskiDzianis/scand_cafe/tree/master/files/db_dump
+or from: by_scand_test_task\files\
+
+2) Put file testtask.war from directory by_scand_test_task\target\
+into your tomcat\webapps\ directory and run it or use pom.xml for assembly project in your IDE.
+
+3) You can configure database's parameters in db.properties file
+
+additionally
+
+If you need to change rules of calculating order's price you
+can make new implementation of two classes BusinessRules and 
+BusinessRulesDao and correct dependencies in cost_calculation.xml
+without whole recompiling. 
+
+Also you may have a look at class-diagramm: 
+by_scand_test_task\files\coffee_shop_classes.pdf
+
+
+

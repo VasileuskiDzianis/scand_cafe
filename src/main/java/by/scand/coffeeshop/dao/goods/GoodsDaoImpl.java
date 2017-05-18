@@ -29,6 +29,7 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao {
 			resultSet = prepStatement.executeQuery();
 
 			if (resultSet.next()) {
+				
 				return new Goods(resultSet.getInt("id"), resultSet.getString("name" + "_" + lang),
 								 resultSet.getInt("price"), resultSet.getString("disabled").charAt(0));
 			}
@@ -67,5 +68,4 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao {
 
 		return goodsList;
 	}
-
 }

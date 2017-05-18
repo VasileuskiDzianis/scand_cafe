@@ -40,15 +40,16 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public void confirmOrder(Buyer buyer, Order order) {
-
+		int orderId = 0;
+			
 		buyerService.addOne(buyer);
 		order.setBuyer(buyer);
 		order.setDate(new Date());
-		orderDao.addOne(order);
+		orderId = orderDao.addOne(order);
 
 		// for every OrderItem we set order id
 		for (OrderItem orderItem : order.getItems()) {
-			orderItem.setOrderId(order.getId());
+			orderItem.setOrderId(orderId);
 		}
 		orderItemService.addAllItems(order.getItems());
 	}

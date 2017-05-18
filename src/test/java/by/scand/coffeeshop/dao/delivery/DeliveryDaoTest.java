@@ -11,7 +11,7 @@ import by.scand.coffeeshop.dao.delivery.DeliveryDaoImpl;
 public class DeliveryDaoTest {
 	
 	private static final int DELIVERY_COST = 200;
-	private static final int FREE_DELIVERY_LEVEL = 200;
+	private static final int FREE_DELIVERY_LEVEL = 1000;
 
 	private DeliveryDao deliveryDao;
 	@Before

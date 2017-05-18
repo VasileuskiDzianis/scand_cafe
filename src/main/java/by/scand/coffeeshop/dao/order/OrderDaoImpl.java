@@ -21,7 +21,7 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
 		PreparedStatement prepStatement = null;
 		ResultSet generatedKey = null;
 		String dbReqAddOrder = "INSERT INTO orders(date,buyer_id,discount,delivery,cost) VALUES(?,?,?,?,?);";
-
+		
 		try {
 			prepStatement = connection.prepareStatement(dbReqAddOrder, Statement.RETURN_GENERATED_KEYS);
 			prepStatement.setString(1, new Timestamp(order.getDate().getTime()).toString());
@@ -34,7 +34,7 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
 			generatedKey = prepStatement.getGeneratedKeys();
 			
 			if (generatedKey.next()) {
-				order.setId(generatedKey.getInt(1));
+				return generatedKey.getInt(1);
 			}
 
 		} catch (SQLException e) {
@@ -43,7 +43,6 @@ public class OrderDaoImpl extends BaseDao implements OrderDao {
 			closeAll(generatedKey, prepStatement, connection);
 		}
 		
-		return order.getId();
+		return 0;
 	}
-
 }
