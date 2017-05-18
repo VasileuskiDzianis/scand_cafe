@@ -14,13 +14,16 @@ public class DiscountServiceImpl implements DiscountService {
 	DiscountDao discountDao;
 
 	@Override
-	public int calcDiscount(List<OrderItem> items) {
+	public int calculateDiscount(List<OrderItem> items) {
 		int discount = 0;
+
 		if (getNumberOfFreeCup() != 0) {
 			for (OrderItem orderItem : items) {
-				// calculate how many times N-cup is
-				// containing in value of amount and
-				// multiply it on price of goods
+
+				/*
+				 * calculate how many times N-cup is containing in value of
+				 * amount and multiply it on price of goods
+				 */
 				discount -= (orderItem.getAmount() / getNumberOfFreeCup()) * orderItem.getGoods().getPrice();
 			}
 		}
@@ -29,9 +32,7 @@ public class DiscountServiceImpl implements DiscountService {
 
 	@Override
 	public int getNumberOfFreeCup() {
-		int numberOfFreeCup = 0;
-		numberOfFreeCup = discountDao.getNumberOfFreeCup();
-		return numberOfFreeCup;
-	}
 
+		return discountDao.getNumberOfFreeCup();
+	}
 }

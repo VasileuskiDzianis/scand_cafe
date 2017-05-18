@@ -17,12 +17,7 @@ public abstract class BaseDao {
 	@Resource(name = "dataSource")
 	private DataSource dataSource;
 
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
-
 	protected Connection getConnection() {
-
 		Properties property = new Properties();
 		Connection connection = null;
 
@@ -34,32 +29,34 @@ public abstract class BaseDao {
 		} catch (IOException e) {
 			throw new RuntimeException("Error: property file wasn't found!", e);
 		}
+
 		// for using Tomcat DBCP set connectionType=dbcp in db.properties
 		if (property.getProperty("connectionType").equals("dbcp")) {
 			try {
 				connection = dataSource.getConnection();
+				return connection;
 			} catch (SQLException e) {
 				throw new RuntimeException("Error: getting connection from DBCP was faulted", e);
 			}
-		} else {
-			try {
-				Class.forName(property.getProperty("driverClassName"));
-			} catch (ClassNotFoundException e) {
-				throw new RuntimeException("Error: JDBC driver wasn't found!", e);
-			}
+		}
+		
+		try {
+			Class.forName(property.getProperty("driverClassName"));
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Error: JDBC driver wasn't found!", e);
+		}
 
-			try {
-				connection = DriverManager.getConnection(property.getProperty("url"), property);
-			} catch (SQLException e) {
-				throw new RuntimeException("Error: getting connection was faulted", e);
-			}
-
+		try {
+			connection = DriverManager.getConnection(property.getProperty("url"), property);
+		} catch (SQLException e) {
+			throw new RuntimeException("Error: getting connection was faulted", e);
 		}
 
 		return connection;
 	}
 
 	protected void closeAll(ResultSet resultSet, Statement statement, Connection connection) {
+		
 		try {
 			if (resultSet != null)
 				resultSet.close();
@@ -84,14 +81,15 @@ public abstract class BaseDao {
 		Connection connection = getConnection();
 		PreparedStatement prepStatement = null;
 		ResultSet resultSet = null;
-		int property = 0;
 		String dbReqGetProperty = "SELECT value FROM " + tableName + " WHERE property=?;";
+		
 		try {
 			prepStatement = connection.prepareStatement(dbReqGetProperty);
 			prepStatement.setString(1, propertyName);
 			resultSet = prepStatement.executeQuery();
 			if (resultSet.next()) {
-				property = resultSet.getInt("value");
+				
+				return resultSet.getInt("value");
 			}
 
 		} catch (SQLException e) {
@@ -99,8 +97,7 @@ public abstract class BaseDao {
 		} finally {
 			closeAll(resultSet, prepStatement, connection);
 		}
-		return property;
-
+		
+		return 0;
 	}
-
 }

@@ -9,6 +9,9 @@ import by.scand.coffeeshop.dao.delivery.DeliveryDao;
 import by.scand.coffeeshop.dao.delivery.DeliveryDaoImpl;
 
 public class DeliveryDaoTest {
+	
+	private static final int DELIVERY_COST = 200;
+	private static final int FREE_DELIVERY_LEVEL = 200;
 
 	private DeliveryDao deliveryDao;
 	@Before
@@ -18,11 +21,13 @@ public class DeliveryDaoTest {
 	
 	@Test
 	public void testGetDeliveryCost() {
-		assertEquals(200, deliveryDao.getDeliveryCost());
+		
+		assertEquals(DELIVERY_COST, deliveryDao.getDeliveryCost());
 	}
 	@Test
 	public void testGetFreeDeliveryLevel() {
-		assertEquals(1000, deliveryDao.getFreeDeliveryLevel());
+		
+		assertEquals(FREE_DELIVERY_LEVEL, deliveryDao.getFreeDeliveryLevel());
 	}
 
 }

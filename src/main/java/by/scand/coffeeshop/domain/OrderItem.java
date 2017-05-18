@@ -7,20 +7,9 @@ public class OrderItem {
 	private int orderId;
 	private int cost;
 
-	public OrderItem() {
-
-	}
-
 	public OrderItem(Goods goods, int amount) {
 		this.goods = goods;
 		this.amount = amount;
-	}
-
-	public OrderItem(int id, int orderId, Goods goods, int amount) {
-		this.id = id;
-		this.goods = goods;
-		this.amount = amount;
-		this.orderId = orderId;
 	}
 
 	public int getCost() {

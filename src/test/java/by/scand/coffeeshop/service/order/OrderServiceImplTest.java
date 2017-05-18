@@ -11,29 +11,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import by.scand.coffeeshop.dao.delivery.DeliveryDao;
-import by.scand.coffeeshop.dao.discount.DiscountDao;
-import by.scand.coffeeshop.dao.order.OrderDao;
-import by.scand.coffeeshop.dao.order.OrderDaoImpl;
 import by.scand.coffeeshop.domain.Goods;
 import by.scand.coffeeshop.domain.Order;
 import by.scand.coffeeshop.domain.OrderItem;
 import by.scand.coffeeshop.service.delivery.DeliveryService;
-import by.scand.coffeeshop.service.delivery.DeliveryServiceImpl;
 import by.scand.coffeeshop.service.discount.DiscountService;
-import by.scand.coffeeshop.service.discount.DiscountServiceImpl;
 import by.scand.coffeeshop.service.orderitem.OrderItemService;
-import by.scand.coffeeshop.service.orderitem.OrderItemServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class OrderServiceImplTest {
-
 	private Goods goods = new Goods(1, "Coffe sort 1", 150, 'N');
 	private OrderItem orderItem = new OrderItem(goods, 8);
-
+	private Order order = new Order();
 	@Mock
 	private DeliveryService deliveryService;
 	@Mock
@@ -43,11 +34,9 @@ public class OrderServiceImplTest {
 	@InjectMocks
 	private OrderServiceImpl orderService = new OrderServiceImpl();
 
-	private Order order;
-
 	@Before
 	public void initialization() {
-		order = new Order();
+		
 		order.setItems(new ArrayList<OrderItem>(Arrays.asList(orderItem)));
 	}
 
@@ -57,13 +46,11 @@ public class OrderServiceImplTest {
 		int discount = -150;
 		int delivery = 0;
 
-		when(deliveryService.calcDelivery(costOfGoods)).thenReturn(delivery);
-		when(discountService.calcDiscount(order.getItems())).thenReturn(discount);
-		when(orderItemService.getPrice(orderItem)).thenReturn(costOfGoods);
+		when(deliveryService.calculateDeliveryCost(costOfGoods)).thenReturn(delivery);
+		when(discountService.calculateDiscount(order.getItems())).thenReturn(discount);
+		when(orderItemService.getOrderItemCost(orderItem)).thenReturn(costOfGoods);
 
 		// it should be calculated: 150*8 - 150(discount) + 0(delivery)
-		assertEquals(1050, orderService.sum(order));
-
+		assertEquals(1050, orderService.calculateOrderCost(order));
 	}
-
 }

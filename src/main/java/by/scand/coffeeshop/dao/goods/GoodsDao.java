@@ -6,7 +6,7 @@ import by.scand.coffeeshop.domain.Goods;
 
 public interface GoodsDao {
 
-	Goods getOne(int id, String lang);
+	Goods getOneById(int id, String lang);
 
 	List<Goods> getAll(String lang);
 

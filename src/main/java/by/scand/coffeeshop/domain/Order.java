@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
-import by.scand.coffeeshop.dao.*;
-
 public class Order {
 
 	private int id;

@@ -8,20 +8,14 @@ public class DeliveryDaoImpl extends BaseDao implements DeliveryDao {
 
 	@Override
 	public int getDeliveryCost() {
-		int deliveryCost = 0; // coins
 
-		deliveryCost = getOneIntProperty("business_rules", "delivery");
-
-		return deliveryCost;
+		return getOneIntProperty("business_rules", "delivery");
 	}
 
 	@Override
 	public int getFreeDeliveryLevel() {
-		int deliveryFreeLevel = 0; // coins
 
-		deliveryFreeLevel = getOneIntProperty("business_rules", "free_delivery");
-
-		return deliveryFreeLevel;
+		return getOneIntProperty("business_rules", "free_delivery");
 	}
 
 }

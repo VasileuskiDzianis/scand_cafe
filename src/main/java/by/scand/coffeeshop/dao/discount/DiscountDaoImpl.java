@@ -9,11 +9,6 @@ public class DiscountDaoImpl extends BaseDao implements DiscountDao {
 	@Override
 	public int getNumberOfFreeCup() {
 
-		int numberOfFreeCup = 0;
-
-		numberOfFreeCup = getOneIntProperty("business_rules", "free_cup");
-
-		return numberOfFreeCup;
+		return getOneIntProperty("business_rules", "free_cup");
 	}
-
 }

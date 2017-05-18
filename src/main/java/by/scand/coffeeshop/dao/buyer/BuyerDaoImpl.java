@@ -14,12 +14,10 @@ public class BuyerDaoImpl extends BaseDao implements BuyerDao {
 
 	@Override
 	public int addOne(Buyer buyer) {
-		Connection connection;
-		connection = getConnection();
+		Connection connection = getConnection();
 		PreparedStatement prepStatement = null;
 		ResultSet generatedKey = null;
 		String dbReqAddBuyer = "INSERT INTO buyer(first_name,last_name,patronymic,address) VALUES(?,?,?,?);";
-		int id = 0;
 
 		try {
 			prepStatement = connection.prepareStatement(dbReqAddBuyer, Statement.RETURN_GENERATED_KEYS);
@@ -30,17 +28,15 @@ public class BuyerDaoImpl extends BaseDao implements BuyerDao {
 			prepStatement.execute();
 			generatedKey = prepStatement.getGeneratedKeys();
 			if (generatedKey.next()) {
-				id = generatedKey.getInt(1);
+				buyer.setId(generatedKey.getInt(1));
 			}
 
 		} catch (SQLException e) {
 			throw new RuntimeException("Error: adding Buyer!", e);
-		} finally
-
-		{
+		} finally {
 			closeAll(generatedKey, prepStatement, connection);
 		}
-		return id;
-	}
 
+		return buyer.getId();
+	}
 }

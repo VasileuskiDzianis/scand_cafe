@@ -4,11 +4,8 @@ public class Goods {
 
 	private int id;
 	private String name;
-	private int price;
+	private int price;		//coins
 	private char disabled;
-
-	public Goods() {
-	}
 
 	public Goods(int id, String name, int price, char disabled) {
 		this.id = id;

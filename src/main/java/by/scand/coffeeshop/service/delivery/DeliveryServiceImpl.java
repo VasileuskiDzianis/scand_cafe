@@ -7,20 +7,21 @@ import by.scand.coffeeshop.dao.delivery.DeliveryDao;
 @Service
 public class DeliveryServiceImpl implements DeliveryService {
 
+	private static final int FREE_DELIVERY_COST = 0;
+
 	@Autowired
-	DeliveryDao deliveryDao;
+	private DeliveryDao deliveryDao;
 
 	@Override
-	public int calcDelivery(int orderSum) {
-		int deliveryFreeLevel = 0;
-		int deliveryCost = 0;
-		
-			deliveryFreeLevel = deliveryDao.getFreeDeliveryLevel();
-			deliveryCost = deliveryDao.getDeliveryCost();
-		if (orderSum >= deliveryFreeLevel) {
-			return 0;
-		} else
-			return deliveryCost;
-	}
+	public int calculateDeliveryCost(int orderSum) {
+		int deliveryFreeLevel = deliveryDao.getFreeDeliveryLevel();
 
+		if (orderSum >= deliveryFreeLevel) {
+			
+			return FREE_DELIVERY_COST;
+		} else {
+			
+			return deliveryDao.getDeliveryCost();
+		}
+	}
 }

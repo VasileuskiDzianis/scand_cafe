@@ -13,16 +13,16 @@ public class BuyerDaoImplTest {
 
 	@Ignore
 	@Test
-	public void testAddOneBuyer(){
+	public void testAddOneBuyer() {
 		Buyer buyer = new Buyer();
+		BuyerDao dao = new BuyerDaoImpl();
+
 		buyer.setId(1);
 		buyer.setFirstName("Test");
 		buyer.setLastName("Test");
 		buyer.setPatronymic("Test");
 		buyer.setAddress("Test");
-		BuyerDao dao = new BuyerDaoImpl();
-		assertNotSame(0, dao.addOne(buyer));
-		
-	}
 
+		assertNotSame(0, dao.addOne(buyer));
+	}
 }

@@ -8,9 +8,6 @@ public class Buyer {
 	private String patronymic;
 	private String address;
 
-	public Buyer() {
-	}
-
 	public int getId() {
 		return id;
 	}

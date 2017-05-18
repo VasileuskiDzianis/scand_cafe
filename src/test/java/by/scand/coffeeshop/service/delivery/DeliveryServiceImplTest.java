@@ -14,7 +14,6 @@ import by.scand.coffeeshop.service.delivery.DeliveryServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DeliveryServiceImplTest {
-	
 	@Mock
 	private DeliveryDao deliveryDao;
 	@InjectMocks
@@ -28,12 +27,10 @@ public class DeliveryServiceImplTest {
 		when(deliveryDao.getDeliveryCost()).thenReturn(deliveryCost);
 		when(deliveryDao.getFreeDeliveryLevel()).thenReturn(freeDeliveryLevel);
 		
-		int result = deliveryService.calcDelivery(999);
+		int result = deliveryService.calculateDeliveryCost(999);
 		assertEquals(deliveryCost, result);
-		result = deliveryService.calcDelivery(freeDeliveryLevel);
-		assertEquals(0, result);
-			
 		
+		result = deliveryService.calculateDeliveryCost(freeDeliveryLevel);
+		assertEquals(0, result);
 	}
-
 }

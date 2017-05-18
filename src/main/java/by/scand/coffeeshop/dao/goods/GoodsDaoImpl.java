@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.stereotype.Repository;
+
 import by.scand.coffeeshop.dao.BaseDao;
 import by.scand.coffeeshop.domain.Goods;
 
@@ -14,23 +16,21 @@ import by.scand.coffeeshop.domain.Goods;
 public class GoodsDaoImpl extends BaseDao implements GoodsDao {
 
 	@Override
-	public Goods getOne(int id, String lang) {
-		Connection connection = null;
-		connection = getConnection();
+	public Goods getOneById(int id, String lang) {
+
+		Connection connection = getConnection();
 		PreparedStatement prepStatement = null;
 		ResultSet resultSet = null;
 		String dbReqGetGoods = "SELECT * FROM goods WHERE id=?;";
-		Goods goods = new Goods();
 
 		try {
 			prepStatement = connection.prepareStatement(dbReqGetGoods);
 			prepStatement.setInt(1, id);
 			resultSet = prepStatement.executeQuery();
+
 			if (resultSet.next()) {
-				goods.setId(resultSet.getInt("id"));
-				goods.setName(resultSet.getString("name" + "_" + lang));
-				goods.setPrice(resultSet.getInt("price"));
-				goods.setDisabled(resultSet.getString("disabled").charAt(0));
+				return new Goods(resultSet.getInt("id"), resultSet.getString("name" + "_" + lang),
+								 resultSet.getInt("price"), resultSet.getString("disabled").charAt(0));
 			}
 
 		} catch (SQLException e) {
@@ -39,7 +39,7 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao {
 			closeAll(resultSet, prepStatement, connection);
 		}
 
-		return goods;
+		return null;
 	}
 
 	@Override

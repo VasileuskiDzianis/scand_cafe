@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	session="false"%>
 <%@ include file="header.jsp"%>
@@ -19,8 +20,6 @@
 		<tr>
 			<td class="buyer"><spring:message code="label.address"/> <input type="text" size="20" name="address" /></td>
 		</tr>
-
-
 		<tr>
 			<td class="buyer"><input type="submit" value="<spring:message code="label.confirm"/>" /></td>
 		</tr>
@@ -33,6 +32,7 @@
 			<th><spring:message code="label.amount"/></th>
 			<th><spring:message code="label.cost"/></th>
 		</tr>
+		
 		<c:forEach var="orderItem" items="${order.items}" varStatus="line">
 			<c:if test="${(line.count mod 2) ne 0}">
 			<tr class="dark">
@@ -41,18 +41,18 @@
 			<tr>
 			</c:if>
 				<td>${orderItem.goods.name}</td>
-				<td>${orderItem.goods.price/100} byn</td>
+				<td><fmt:formatNumber value="${orderItem.goods.price/100}" maxFractionDigits="2" minFractionDigits="2"/> byn</td>
 				<td>${orderItem.amount}</td>
-				<td>${orderItem.cost/100} byn</td>
+				<td><fmt:formatNumber value="${orderItem.cost/100}" maxFractionDigits="2" minFractionDigits="2"/> byn</td>
 			</tr>
 		</c:forEach>
-<tr><td colspan="3" class="order_details"><spring:message code="label.summ"/></td><td class="order_details_nums">${(order.cost-order.discount-order.delivery)/100} byn</td></tr>
-<tr><td colspan="3" class="order_details"><spring:message code="label.delivery"/></td><td class="order_details_nums">${order.delivery/100} byn</td></tr>
-<tr><td colspan="3" class="order_details"><spring:message code="label.discount"/></td><td class="order_details_nums">${order.discount/100} byn</td></tr>
-<tr><td colspan="3" class="order_details"><spring:message code="label.total"/></td><td class="order_details_nums">${order.cost/100} byn</td></tr>
+		
+<tr><td colspan="3" class="order_details"><spring:message code="label.summ"/></td><td class="order_details_nums"><fmt:formatNumber value="${(order.cost-order.discount-order.delivery)/100}" maxFractionDigits="2" minFractionDigits="2"/> byn</td></tr>
+<tr><td colspan="3" class="order_details"><spring:message code="label.delivery"/></td><td class="order_details_nums"><fmt:formatNumber value="${order.delivery/100}" maxFractionDigits="2" minFractionDigits="2"/> byn</td></tr>
+<tr><td colspan="3" class="order_details"><spring:message code="label.discount"/></td><td class="order_details_nums"><fmt:formatNumber value="${order.discount/100}" maxFractionDigits="2" minFractionDigits="2"/> byn</td></tr>
+<tr><td colspan="3" class="order_details"><spring:message code="label.total"/></td><td class="order_details_nums"><fmt:formatNumber value="${order.cost/100}" maxFractionDigits="2" minFractionDigits="2"/> byn</td></tr>
 
 	</table>
-
 </form>
 
 <%@ include file="footer.jsp"%>

@@ -13,9 +13,10 @@ import by.scand.coffeeshop.domain.Goods;
 public class GoodsDaoImplTest {
 
 	@Test
-	public void testGetOne() {
+	public void testGetOneById() {
 		GoodsDao goodsDaoImpl = new GoodsDaoImpl();
-		Goods goods = goodsDaoImpl.getOne(1, "en");
+		Goods goods = goodsDaoImpl.getOneById(1, "en");
+		
 		assertEquals(1, goods.getId());
 		assertEquals("Test Coffee Sort 1", goods.getName());
 		assertEquals(50, goods.getPrice());
@@ -26,7 +27,9 @@ public class GoodsDaoImplTest {
 	public void testGetAll() {
 		GoodsDao goodsDaoImpl = new GoodsDaoImpl();
 		List<Goods> goodsList;
+		
 		goodsList = goodsDaoImpl.getAll("en");
+		
 		assertEquals(7, goodsList.size());
 
 	}

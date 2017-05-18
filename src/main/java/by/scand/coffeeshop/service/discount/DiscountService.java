@@ -5,8 +5,9 @@ import java.util.List;
 import by.scand.coffeeshop.domain.OrderItem;
 
 public interface DiscountService {
-	
-	public int calcDiscount(List<OrderItem> items);
-	public int getNumberOfFreeCup();
+
+	int calculateDiscount(List<OrderItem> items);
+
+	int getNumberOfFreeCup();
 
 }

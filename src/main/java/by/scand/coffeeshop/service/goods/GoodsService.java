@@ -5,6 +5,8 @@ import java.util.List;
 import by.scand.coffeeshop.domain.Goods;
 
 public interface GoodsService {
-	Goods getOneGoods(int id, String lang);
+
+	Goods getOneGoodsById(int id, String lang);
+
 	List<Goods> getAllGoods(String lang);
 }

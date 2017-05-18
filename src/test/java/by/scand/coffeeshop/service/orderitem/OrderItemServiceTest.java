@@ -10,14 +10,13 @@ import by.scand.coffeeshop.domain.OrderItem;
 public class OrderItemServiceTest {
 	private OrderItem orderItem;
 	private OrderItemService orderItemService;
+	
 	@Test
 	public void testGetPrice(){
-		orderItem = new OrderItem();
-		Goods goods = new Goods();
-		goods.setPrice(199);
-		orderItem.setAmount(3);
-		orderItem.setGoods(goods);
+		Goods goods = new Goods(0,"Test",199,'N');
+		orderItem = new OrderItem(goods,3);
 		orderItemService = new OrderItemServiceImpl();
-		assertEquals(3*199, orderItemService.getPrice(orderItem));
+		
+		assertEquals(3*199, orderItemService.getOrderItemCost(orderItem));
 	}
 }
