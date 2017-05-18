@@ -1,8 +1,6 @@
 package by.scand.coffeeshop.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -17,9 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import by.scand.coffeeshop.domain.BuyForm;
+import by.scand.coffeeshop.domain.Items;
 import by.scand.coffeeshop.service.order.OrderService;
 
 @Controller
@@ -34,25 +33,25 @@ public class BuyController {
 	private MessageSource messageSource;
 
 	@RequestMapping(value = "buy", method = RequestMethod.POST)
-	public String buy(Model model, Locale locale, @RequestParam Map<String, String> orderParameters,
-			@RequestParam(name = "chosenIds", required = false) List<Integer> chosenIds,
-			@ModelAttribute BuyForm items) {
+	public String buy(Model model, Locale locale, @ModelAttribute BuyForm items) {
+		int numberOfSelectedItems = 0;
+		Map<Integer, Integer> buyItems = new HashMap<Integer, Integer>(); // K - product id; V - amount
 
-		Map<Integer, Integer> buyItems = new HashMap<Integer, Integer>();; // K - product id; V - amount
+		for (Items item : items.getItems()) {
 
-		if (chosenIds == null) {
+			if ((item.getId() != 0) && (item.getAmount() != null)) {
+				buyItems.put(item.getId(), item.getAmount());
+				numberOfSelectedItems++;
+			}
+
+		}
+
+		if (numberOfSelectedItems == 0) {
 			model.addAttribute("message", messageSource.getMessage("message.NoSelectedSorts", null, locale));
+			
 			return "message";
 		}
 
-		for (Integer id : chosenIds) {
-			if (!validateAmount(orderParameters.get("amount_for_id_" + id))) {
-				model.addAttribute("message", messageSource.getMessage("message.IncorrectAmount", null, locale));
-				
-				return "message";
-			}
-			buyItems.put(id, Integer.parseUnsignedInt(orderParameters.get("amount_for_id_" + id)));
-		}
 		model.addAttribute("order", orderService.buyGoods(buyItems, locale.getLanguage()));
 
 		return "order";

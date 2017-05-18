@@ -1,8 +1,8 @@
-package by.scand.coffeeshop.controller;
+package by.scand.coffeeshop.domain;
 
 public class Items {
 	private int id;
-	private int amount;
+	private Integer amount;
 
 	public int getId() {
 		return id;
@@ -12,11 +12,11 @@ public class Items {
 		this.id = id;
 	}
 
-	public int getAmount() {
+	public Integer getAmount() {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(Integer amount) {
 		this.amount = amount;
 	}
 }

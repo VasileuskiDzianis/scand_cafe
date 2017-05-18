@@ -1,4 +1,4 @@
-package by.scand.coffeeshop.controller;
+package by.scand.coffeeshop.domain;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ public class BuyForm {
 	private List<Items> items;
 
 	public List<Items> getItems() {
+
 		return items;
 	}
 
