@@ -1,5 +1,6 @@
 package by.scand.coffeeshop.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +35,8 @@ public class BuyController {
 
 	@RequestMapping(value = "buy", method = RequestMethod.POST)
 	public String buy(Model model, Locale locale, @RequestParam Map<String, String> orderParameters,
-			@RequestParam(name = "chosenIds", required = false) List<Integer> chosenIds) {
+			@RequestParam(name = "chosenIds", required = false) List<Integer> chosenIds,
+			@ModelAttribute BuyForm items) {
 
 		Map<Integer, Integer> buyItems = new HashMap<Integer, Integer>();; // K - product id; V - amount
 

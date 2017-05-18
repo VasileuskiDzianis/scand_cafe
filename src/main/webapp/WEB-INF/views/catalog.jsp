@@ -27,13 +27,13 @@
 				<tr>
 			</c:if>
 
-			<td><input type="checkbox" name="chosenIds" value="${goods.id}"
+			<td><input type="checkbox" name="items[${line.count}].id" value="${goods.id}"
 				id="${goods.id}"></td>
 			<td><label for="${goods.id}">${goods.name}</label></td>
 			<td><fmt:formatNumber value="${goods.price/100}"
 					maxFractionDigits="2" minFractionDigits="2" /> byn</td>
-			<td><input type="text" size="5" name="amount_for_id_${goods.id}"
-				class="amountfield" /></td>
+			<td><input type="text" size="5" name="items[${line.count}].amount"
+				class="amountfield"/></td>
 			</tr>
 		</c:forEach>
 
