@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Buyer {
@@ -20,7 +22,20 @@ public class Buyer {
 	private String patronymic;
 	@Column(name = "address")
 	private String address;
+	
+/*	@OneToOne(optional = false)
+	@JoinColumn(name = "id")
+	private Order order;*/
+	
+	
+/*	public Order getOrder() {
+		return order;
+	}
 
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+*/
 	public int getId() {
 		return id;
 	}

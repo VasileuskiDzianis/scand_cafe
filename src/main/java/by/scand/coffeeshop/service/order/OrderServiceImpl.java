@@ -42,14 +42,14 @@ public class OrderServiceImpl implements OrderService {
 	public void confirmOrder(Buyer buyer, Order order) {
 		int orderId = 0;
 			
-		buyerService.addOne(buyer);
+	//	buyerService.addOne(buyer);
 		order.setBuyer(buyer);
 		order.setDate(new Date());
 		orderId = orderDao.addOne(order);
 
-		/*// for every OrderItem we set order id
-		for (OrderItem orderItem : order.getItems()) {
-			orderItem.setOrder(orderId);
+		// for every OrderItem we set order id
+		/*for (OrderItem orderItem : order.getItems()) {
+			orderItem.setOrder(order);
 		}
 		orderItemService.addAllItems(order.getItems());*/
 	}

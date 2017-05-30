@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,7 +26,7 @@ public class Order {
 	private List<OrderItem> items = new ArrayList<OrderItem>();
 	@Column(name = "date")
 	private Date date;
-	@OneToOne
+	@OneToOne(optional = false, cascade = CascadeType.ALL)
 	@JoinColumn(name = "buyer_id")
 	private Buyer buyer;
 	@Column(name = "discount")
