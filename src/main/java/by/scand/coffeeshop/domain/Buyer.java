@@ -1,5 +1,6 @@
 package by.scand.coffeeshop.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,9 +12,13 @@ public class Buyer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "first_name")
 	private String firstName;
+	@Column(name = "last_name")
 	private String lastName;
+	@Column(name = "patronymic")
 	private String patronymic;
+	@Column(name = "address")
 	private String address;
 
 	public int getId() {

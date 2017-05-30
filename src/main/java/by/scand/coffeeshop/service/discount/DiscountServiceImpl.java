@@ -11,8 +11,8 @@ import by.scand.coffeeshop.domain.OrderItem;
 public class DiscountServiceImpl implements DiscountService {
 
 	@Autowired
-	DiscountDao discountDao;
-
+	private DiscountDao discountDao;
+	
 	@Override
 	public int calculateDiscount(List<OrderItem> items) {
 		int discount = 0;

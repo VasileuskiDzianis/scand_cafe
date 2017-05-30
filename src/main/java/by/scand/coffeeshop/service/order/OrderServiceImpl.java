@@ -47,11 +47,11 @@ public class OrderServiceImpl implements OrderService {
 		order.setDate(new Date());
 		orderId = orderDao.addOne(order);
 
-		// for every OrderItem we set order id
+		/*// for every OrderItem we set order id
 		for (OrderItem orderItem : order.getItems()) {
-			orderItem.setOrderId(orderId);
+			orderItem.setOrder(orderId);
 		}
-		orderItemService.addAllItems(order.getItems());
+		orderItemService.addAllItems(order.getItems());*/
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class OrderServiceImpl implements OrderService {
 		Order order = new Order();	// Key - goods Id; Value - amount which we get from UI
 
 		for (Map.Entry<Integer, Integer> entry : purchases.entrySet()) {
-			addItem(goodsService.getOneGoodsById(entry.getKey(), language), entry.getValue(), order);
+			addItem(goodsService.getOneGoodsById(entry.getKey()), entry.getValue(), order);
 		}
 
 		calculateOrderCost(order);

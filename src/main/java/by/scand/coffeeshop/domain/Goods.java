@@ -1,18 +1,40 @@
 package by.scand.coffeeshop.domain;
 
-public class Goods {
+import java.util.Map;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.JoinColumn;
+
+@Entity
+public class Goods {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private String name;
-	private int price;		//coins
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@JoinTable(name="goods_name", joinColumns=@JoinColumn(name="goods_id"))
+	@MapKeyColumn(name="locale")
+	@Column(name = "name")
+	private Map<String, String> name;
+	@Column(name = "price")
+	private int price; // coins
+	@Column(name = "disabled")
 	private char disabled;
 
-	public Goods(int id, String name, int price, char disabled) {
+	/*public Goods(int id, String name, int price, char disabled) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.disabled = disabled;
-	}
+	}*/
 
 	public int getId() {
 		return id;
@@ -22,11 +44,12 @@ public class Goods {
 		this.id = id;
 	}
 
-	public String getName() {
+	
+	public Map<String, String> getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(Map<String, String> name) {
 		this.name = name;
 	}
 
@@ -44,11 +67,6 @@ public class Goods {
 
 	public void setDisabled(char disabled) {
 		this.disabled = disabled;
-	}
-
-	@Override
-	public String toString() {
-		return "Goods [id=" + id + ", name=" + name + ", price=" + price + ", disabled=" + disabled + "]";
 	}
 
 }

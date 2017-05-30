@@ -1,9 +1,8 @@
 package by.scand.coffeeshop.dao.orderitem;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
+
+import javax.persistence.EntityManager;
 
 import org.springframework.stereotype.Repository;
 
@@ -15,29 +14,15 @@ public class OrderItemDaoImpl extends BaseDao implements OrderItemDao {
 
 	@Override
 	public void addAll(List<OrderItem> orderItems) {
-		Connection connection;
-		connection = getConnection();
-		PreparedStatement prepStatement = null;
-		String dbAddOrderItem = "INSERT INTO order_item(order_id,goods_id,amount) VALUES(?,?,?);";
 
-		try {
-			prepStatement = connection.prepareStatement(dbAddOrderItem);
-			connection.setAutoCommit(false);
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
 
-			for (OrderItem orderItem : orderItems) {
-				prepStatement.setInt(1, orderItem.getOrderId());
-				prepStatement.setInt(2, orderItem.getGoods().getId());
-				prepStatement.setInt(3, orderItem.getAmount());
-				prepStatement.addBatch();
-			}
-
-			prepStatement.executeBatch();
-			connection.commit();
-
-		} catch (SQLException e) {
-			throw new RuntimeException("Error: adding order items!", e);
-		} finally {
-			closeAll(null, prepStatement, connection);
+		for (OrderItem orderItem : orderItems) {
+			entityManager.persist(orderItem);
 		}
+
+		entityManager.getTransaction().commit();
+		entityManager.close();
 	}
 }

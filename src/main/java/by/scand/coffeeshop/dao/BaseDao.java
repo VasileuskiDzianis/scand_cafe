@@ -10,12 +10,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 import javax.annotation.Resource;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.sql.DataSource;
 
 public abstract class BaseDao {
-
+	
+	@PersistenceUnit
+	protected EntityManagerFactory entityManagerFactory;
+		
 	@Resource(name = "dataSource")
 	private DataSource dataSource;
+	
+	public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
+    }
 
 	protected Connection getConnection() {
 		Properties property = new Properties();

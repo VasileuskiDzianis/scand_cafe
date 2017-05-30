@@ -39,12 +39,31 @@
 		<beans:property name="cookieMaxAge" value="86400"></beans:property>
 	</beans:bean>
 
+	<beans:bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<beans:property name="persistenceUnitName"
+			value="by.scand.coffeeshop.jpa.hibernate"></beans:property>
+	</beans:bean>
+
 	<interceptors>
 		<beans:bean
 			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 			<beans:property name="paramName" value="lang" />
 		</beans:bean>
 	</interceptors>
+
+	<beans:bean id="businessRules"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<beans:property name="locations">
+			<beans:array>
+				<beans:value>classpath:business_rules.properties</beans:value>
+			</beans:array>
+		</beans:property>
+	</beans:bean>
+	<context:property-placeholder
+		properties-ref="businessRules" />
+
+
 
 	<context:component-scan base-package="by.scand.coffeeshop" />
 

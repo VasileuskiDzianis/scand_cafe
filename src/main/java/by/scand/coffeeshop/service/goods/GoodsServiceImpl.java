@@ -14,14 +14,14 @@ public class GoodsServiceImpl implements GoodsService {
 	private GoodsDao goodsDao;
 
 	@Override
-	public Goods getOneGoodsById(int id, String lang) {
+	public Goods getOneGoodsById(int id) {
 
-		return goodsDao.getOneById(id, lang);
+		return goodsDao.getOneById(id);
 	}
 
 	@Override
-	public List<Goods> getAllGoods(String lang) {
+	public List<Goods> getAllGoods() {
 
-		return goodsDao.getAll(lang);
+		return goodsDao.getAll();
 	}
 }

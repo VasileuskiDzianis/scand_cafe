@@ -40,7 +40,7 @@
 			<c:if test="${(line.count mod 2) eq 0}">
 			<tr>
 			</c:if>
-				<td>${orderItem.goods.name}</td>
+				<td>${orderItem.goods.name[pageContext.response.locale.language]}</td>
 				<td><fmt:formatNumber value="${orderItem.goods.price/100}" maxFractionDigits="2" minFractionDigits="2"/> byn</td>
 				<td>${orderItem.amount}</td>
 				<td><fmt:formatNumber value="${orderItem.cost/100}" maxFractionDigits="2" minFractionDigits="2"/> byn</td>

@@ -4,14 +4,35 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Order {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "orders")
+public class Order {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
 	private List<OrderItem> items = new ArrayList<OrderItem>();
+	@Column(name = "date")
 	private Date date;
+	@OneToOne
+	@JoinColumn(name = "buyer_id")
 	private Buyer buyer;
+	@Column(name = "discount")
 	private int discount;
+	@Column(name = "delivery")
 	private int delivery;
+	@Column(name = "cost")
 	private int cost;
 
 	public int getId() {

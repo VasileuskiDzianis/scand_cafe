@@ -6,7 +6,7 @@ import by.scand.coffeeshop.domain.Goods;
 
 public interface GoodsService {
 
-	Goods getOneGoodsById(int id, String lang);
+	Goods getOneGoodsById(int id);
 
-	List<Goods> getAllGoods(String lang);
+	List<Goods> getAllGoods();
 }

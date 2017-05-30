@@ -25,7 +25,7 @@ public class CatalogController {
 	@RequestMapping(value = { "/", "home" }, method = RequestMethod.GET)
 	public String home(Model model, Locale locale) {
 
-		model.addAttribute("catalog", goodsService.getAllGoods(locale.getLanguage()));
+		model.addAttribute("catalog", goodsService.getAllGoods());
 		model.addAttribute("nCupFree", discountService.getNumberOfFreeCup());
 
 		return "catalog";
