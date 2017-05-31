@@ -22,8 +22,8 @@ import by.scand.coffeeshop.service.orderitem.OrderItemService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class OrderServiceImplTest {
-	private Goods goods = new Goods(1, "Coffe sort 1", 150, 'N');
-	private OrderItem orderItem = new OrderItem(goods, 8);
+	private Goods goods;
+	private OrderItem orderItem;
 	private Order order = new Order();
 	@Mock
 	private DeliveryService deliveryService;
@@ -36,6 +36,11 @@ public class OrderServiceImplTest {
 
 	@Before
 	public void initialization() {
+		goods = new Goods();
+		
+		goods.setPrice(150);
+		
+		orderItem = new OrderItem(goods, 8);
 		
 		order.setItems(new ArrayList<OrderItem>(Arrays.asList(orderItem)));
 	}

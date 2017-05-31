@@ -17,16 +17,20 @@ import javax.persistence.Transient;
 @Table(name = "order_item")
 public class OrderItem {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@OneToOne(cascade = CascadeType.REFRESH) 
-	@JoinColumn(name="goods_id")
+
+	@OneToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "goods_id")
 	private Goods goods;
+
 	@Column(name = "amount")
 	private int amount;
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
+
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@JoinColumn(name = "order_id")
 	private Order order;
+
 	@Transient
 	private int cost;
 

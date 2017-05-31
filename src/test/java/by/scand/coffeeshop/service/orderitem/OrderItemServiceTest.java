@@ -13,7 +13,9 @@ public class OrderItemServiceTest {
 	
 	@Test
 	public void testGetPrice(){
-		Goods goods = new Goods(0,"Test",199,'N');
+		Goods goods = new Goods();
+		goods.setPrice(199);
+		
 		orderItem = new OrderItem(goods,3);
 		orderItemService = new OrderItemServiceImpl();
 		

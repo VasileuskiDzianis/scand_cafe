@@ -1,6 +1,8 @@
 package by.scand.coffeeshop.service.discount;
 
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -22,14 +24,30 @@ public class DiscountServiceImplTest {
 	private DiscountDao discountDao;
 	@InjectMocks
 	private DiscountServiceImpl discountService = new DiscountServiceImpl();;
-	private Goods goods1 = new Goods(1, "Coffe sort 1", 150, 'N');
-	private Goods goods2 = new Goods(2, "Coffe sort 2", 200, 'N');
-	private Goods goods3 = new Goods(3, "Coffe sort 3", 100, 'N');
-	private Goods goods4 = new Goods(4, "Coffe sort 4", 150, 'N');
-	private OrderItem orderItem1 = new OrderItem(goods1, 1);
-	private OrderItem orderItem2 = new OrderItem(goods2, 1);
-	private OrderItem orderItem3 = new OrderItem(goods3, 1);
-	private OrderItem orderItem4 = new OrderItem(goods4, 11);
+	private Goods goods1;
+	private Goods goods2;
+	private Goods goods3;
+	private Goods goods4;
+	private OrderItem orderItem1;
+	private OrderItem orderItem2;
+	private OrderItem orderItem3;
+	private OrderItem orderItem4;
+	
+	@Before
+	public void orderItemsInit(){
+		goods1 = new Goods();
+		goods2 = new Goods();
+		goods3 = new Goods();
+		goods4 = new Goods();
+		goods1.setPrice(150);
+		goods2.setPrice(200);
+		goods3.setPrice(100);
+		goods4.setPrice(150);
+		orderItem1 = new OrderItem(goods1, 1);
+		orderItem2 = new OrderItem(goods2, 1);
+		orderItem3 = new OrderItem(goods3, 1);
+		orderItem4 = new OrderItem(goods4, 11);
+	}
 
 	@Test
 	public void testCalcDiscount(){

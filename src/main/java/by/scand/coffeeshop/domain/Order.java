@@ -22,17 +22,23 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+	
+	@OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<OrderItem> items = new ArrayList<OrderItem>();
+	
 	@Column(name = "date")
 	private Date date;
+	
 	@OneToOne(optional = false, cascade = CascadeType.ALL)
 	@JoinColumn(name = "buyer_id")
 	private Buyer buyer;
+	
 	@Column(name = "discount")
 	private int discount;
+	
 	@Column(name = "delivery")
 	private int delivery;
+	
 	@Column(name = "cost")
 	private int cost;
 

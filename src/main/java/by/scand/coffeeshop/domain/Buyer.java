@@ -10,32 +10,22 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Buyer {
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
 	@Column(name = "first_name")
 	private String firstName;
+	
 	@Column(name = "last_name")
 	private String lastName;
+	
 	@Column(name = "patronymic")
 	private String patronymic;
+	
 	@Column(name = "address")
 	private String address;
 	
-/*	@OneToOne(optional = false)
-	@JoinColumn(name = "id")
-	private Order order;*/
-	
-	
-/*	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-*/
 	public int getId() {
 		return id;
 	}

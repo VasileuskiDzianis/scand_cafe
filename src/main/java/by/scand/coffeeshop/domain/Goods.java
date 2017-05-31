@@ -16,25 +16,20 @@ import javax.persistence.JoinColumn;
 @Entity
 public class Goods {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@ElementCollection(fetch = FetchType.EAGER)
-	@JoinTable(name="goods_name", joinColumns=@JoinColumn(name="goods_id"))
-	@MapKeyColumn(name="locale")
+	@JoinTable(name = "goods_name", joinColumns = @JoinColumn(name = "goods_id"))
+	@MapKeyColumn(name = "locale")
 	@Column(name = "name")
 	private Map<String, String> name;
+
 	@Column(name = "price")
 	private int price; // coins
+
 	@Column(name = "disabled")
 	private char disabled;
-
-	/*public Goods(int id, String name, int price, char disabled) {
-		this.id = id;
-		this.name = name;
-		this.price = price;
-		this.disabled = disabled;
-	}*/
 
 	public int getId() {
 		return id;
@@ -44,7 +39,6 @@ public class Goods {
 		this.id = id;
 	}
 
-	
 	public Map<String, String> getName() {
 		return name;
 	}

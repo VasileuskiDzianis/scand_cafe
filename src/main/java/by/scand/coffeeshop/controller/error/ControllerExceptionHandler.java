@@ -25,6 +25,8 @@ public class ControllerExceptionHandler {
 		LOGGER.error("Exception occur, ", e);
 
 		model.addAttribute("message", messageSource.getMessage("message.internalServerError", null, locale));
+		
+		e.printStackTrace();
 
 		return "message";
 	}

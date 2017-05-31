@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import by.scand.coffeeshop.dao.buyer.BuyerDaoImpl;
@@ -36,7 +37,7 @@ public class BuyerDaoImplTest {
 		buyerDao.setEntityManagerFactory(entityManagerFactory);
 	}
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testAddOneBuyer() {
 		Buyer buyer = new Buyer();
